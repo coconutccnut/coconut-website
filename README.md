@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Coconut — We Create Influence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Neue+Haas+Grotesk+Display+Pro:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<style>
+  :root {
+    --black: #080808;
+    --deep: #111111;
+    --charcoal: #1a1a1a;
+    --mid: #2a2a2a;
+    --steel: #3d3d3d;
+    --silver: #888888;
+    --ash: #b0b0b0;
+    --mist: #d4d4d4;
+    --white: #f5f5f5;
+    --pure: #ffffff;
+    --glass-bg: rgba(255,255,255,0.04);
+    --glass-border: rgba(255,255,255,0.09);
+    --glass-hover: rgba(255,255,255,0.08);
+    --blur: blur(20px);
+    --radius: 16px;
+    --radius-lg: 24px;
+    --shadow: 0 8px 40px rgba(0,0,0,0.5);
+    --shadow-sm: 0 2px 16px rgba(0,0,0,0.35);
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'DM Sans', sans-serif;
+    --transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* ── CUSTOM CURSOR ── */
+  .cursor {
+    position: fixed;
+    width: 8px; height: 8px;
+    background: var(--pure);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%,-50%);
+    transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%,-50%);
+    transition: transform 0.15s ease-out, width 0.3s, height 0.3s, border-color 0.3s;
+  }
+  body:has(a:hover) .cursor-ring,
+  body:has(button:hover) .cursor-ring { width: 56px; height: 56px; border-color: rgba(255,255,255,0.7); }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 3px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--steel); border-radius: 2px; }
+
+  /* ── GLASS MIXIN ── */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+  }
+
+  /* ── TYPOGRAPHY ── */
+  h1, h2, h3 { font-family: var(--font-display); line-height: 1.08; }
+  h1 { font-size: clamp(3.2rem, 8vw, 8rem); font-weight: 300; letter-spacing: -0.02em; }
+  h2 { font-size: clamp(2.4rem, 5vw, 5rem); font-weight: 300; }
+  h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 400; }
+  p { font-size: 0.95rem; color: var(--ash); font-weight: 300; }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--silver);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 28px; height: 1px;
+    background: var(--silver);
+  }
+
+  /* ── BUTTONS ── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 28px;
+    border-radius: 100px;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: none;
+    transition: var(--transition);
+    border: none;
+    text-decoration: none;
+  }
+  .btn-outline {
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    color: var(--white);
+    backdrop-filter: var(--blur);
+  }
+  .btn-outline:hover {
+    background: var(--glass-hover);
+    border-color: rgba(255,255,255,0.25);
+    transform: translateY(-2px);
+  }
+  .btn-white {
+    background: var(--white);
+    color: var(--black);
+  }
+  .btn-white:hover {
+    background: var(--pure);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(255,255,255,0.12);
+  }
+  .btn-ghost {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid var(--glass-border);
+    color: var(--white);
+    font-size: 0.78rem;
+    padding: 10px 22px;
+  }
+  .btn-ghost:hover {
+    background: rgba(255,255,255,0.13);
+    border-color: rgba(255,255,255,0.2);
+    transform: translateY(-1px);
+  }
+
+  /* ══════════════════════════════
+     NAV
+  ══════════════════════════════ */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.5s, border-color 0.5s;
+  }
+  nav.scrolled {
+    background: rgba(8,8,8,0.85);
+    backdrop-filter: var(--blur);
+    border-bottom: 1px solid var(--glass-border);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--pure);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--ash);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--pure); }
+  .nav-right { display: flex; align-items: center; gap: 20px; }
+  .cart-btn {
+    position: relative;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--white);
+    padding: 10px 16px;
+    border-radius: 100px;
+    cursor: none;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+    backdrop-filter: var(--blur);
+  }
+  .cart-btn:hover { background: var(--glass-hover); border-color: rgba(255,255,255,0.2); }
+  .cart-count {
+    background: var(--white);
+    color: var(--black);
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    font-size: 0.68rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+  }
+  .cart-count.visible { display: flex; }
+
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: none;
+    padding: 4px;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 24px; height: 1px;
+    background: var(--white);
+    transition: var(--transition);
+  }
+
+  /* Mobile nav */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+  }
+
+  /* ══════════════════════════════
+     HERO
+  ══════════════════════════════ */
+  #hero {
+    height: 100vh;
+    min-height: 640px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 0 5%;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(80,80,80,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 20% 80%, rgba(50,50,50,0.15) 0%, transparent 50%),
+      linear-gradient(160deg, #111 0%, #080808 50%, #0d0d0d 100%);
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  }
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    animation: orbFloat 12s ease-in-out infinite;
+  }
+  .hero-orb-1 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(120,120,120,0.12) 0%, transparent 70%);
+    top: -100px; right: -50px;
+    animation-delay: 0s;
+  }
+  .hero-orb-2 {
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(80,80,80,0.1) 0%, transparent 70%);
+    bottom: 100px; left: 10%;
+    animation-delay: -6s;
+  }
+  @keyframes orbFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-30px) scale(1.05); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+  }
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 1s var(--transition) 0.2s forwards;
+  }
+  .hero-dot {
+    width: 6px; height: 6px;
+    background: var(--ash);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .hero-content h1 {
+    opacity: 0;
+    animation: fadeUp 1s var(--transition) 0.35s forwards;
+  }
+  .hero-content h1 em {
+    font-style: italic;
+    color: var(--ash);
+  }
+  .hero-sub {
+    margin-top: 24px;
+    font-size: 1rem;
+    color: var(--silver);
+    max-width: 480px;
+    opacity: 0;
+    animation: fadeUp 1s var(--transition) 0.5s forwards;
+  }
+  .hero-cta {
+    margin-top: 48px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 1s var(--transition) 0.65s forwards;
+  }
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 5%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--steel);
+    opacity: 0;
+    animation: fadeUp 1s var(--transition) 1s forwards;
+  }
+  .hero-scroll-line {
+    width: 40px; height: 1px;
+    background: var(--steel);
+    transform-origin: left;
+    animation: lineGrow 1.5s var(--transition) 1.2s forwards;
+    transform: scaleX(0);
+  }
+  @keyframes lineGrow { to { transform: scaleX(1); } }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-float-card {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    padding: 24px 28px;
+    min-width: 200px;
+    opacity: 0;
+    animation: fadeUp 1s var(--transition) 0.8s forwards;
+  }
+  .hero-float-card .stat { font-family: var(--font-display); font-size: 3.2rem; font-weight: 300; }
+  .hero-float-card .stat-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--silver); margin-top: 4px; }
+
+  @media (max-width: 900px) { .hero-float-card { display: none; } }
+
+  /* ══════════════════════════════
+     SECTION WRAPPER
+  ══════════════════════════════ */
+  section { padding: 120px 5%; }
+  .section-header { margin-bottom: 64px; }
+  .section-header h2 { margin-top: 16px; }
+
+  /* ══════════════════════════════
+     SERVICES
+  ══════════════════════════════ */
+  #services { background: linear-gradient(180deg, var(--black) 0%, #0e0e0e 100%); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .service-card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+  }
+  .service-card:hover {
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(255,255,255,0.16);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow);
+  }
+  .service-img {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+  }
+  .service-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+    filter: brightness(0.7) grayscale(0.3);
+  }
+  .service-card:hover .service-img img { transform: scale(1.06); }
+  .service-badge {
+    position: absolute;
+    top: 16px; right: 16px;
+    background: rgba(8,8,8,0.8);
+    backdrop-filter: var(--blur);
+    border: 1px solid var(--glass-border);
+    color: var(--white);
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    font-weight: 400;
+  }
+  .service-body {
+    padding: 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .service-name {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 400;
+  }
+  .service-desc { font-size: 0.84rem; color: var(--silver); line-height: 1.6; flex: 1; }
+  .service-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+  }
+  .price-tag {
+    display: flex;
+    flex-direction: column;
+  }
+  .price-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--steel); }
+  .price-value { font-family: var(--font-display); font-size: 1.5rem; font-weight: 300; color: var(--white); }
+
+  /* ══════════════════════════════
+     ABOUT
+  ══════════════════════════════ */
+  #about {
+    background: linear-gradient(160deg, #0d0d0d 0%, #111 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .about-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .about-visual {
+    position: relative;
+  }
+  .about-main-img {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    filter: brightness(0.75) grayscale(0.2);
+  }
+  .about-accent-card {
+    position: absolute;
+    bottom: -24px;
+    right: -24px;
+    padding: 20px 24px;
+    background: rgba(20,20,20,0.9);
+    backdrop-filter: var(--blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+  }
+  .about-accent-card .num {
+    font-family: var(--font-display);
+    font-size: 2.8rem;
+    font-weight: 300;
+    line-height: 1;
+  }
+  .about-accent-card .label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--silver);
+    margin-top: 4px;
+  }
+  .about-text h2 { margin-bottom: 28px; }
+  .about-text p { margin-bottom: 20px; font-size: 0.95rem; }
+  .about-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 48px;
+    padding-top: 40px;
+    border-top: 1px solid var(--glass-border);
+  }
+  .about-stat .n {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    font-weight: 300;
+  }
+  .about-stat .l {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--silver);
+    margin-top: 2px;
+  }
+
+  @media (max-width: 768px) {
+    .about-layout { grid-template-columns: 1fr; gap: 48px; }
+    .about-visual { display: none; }
+  }
+
+  /* ══════════════════════════════
+     PORTFOLIO
+  ══════════════════════════════ */
+  #portfolio { background: var(--black); overflow: hidden; }
+  .portfolio-track-wrapper {
+    overflow: hidden;
+    margin: 0 -5%;
+    padding: 0 5%;
+  }
+  .portfolio-track {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 12px;
+  }
+  .portfolio-track::-webkit-scrollbar { display: none; }
+  .portfolio-item {
+    flex: 0 0 380px;
+    scroll-snap-align: start;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 16/10;
+    background: var(--mid);
+    cursor: none;
+  }
+  .portfolio-item video, .portfolio-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6) grayscale(0.2);
+    transition: filter 0.5s;
+  }
+  .portfolio-item:hover video,
+  .portfolio-item:hover img { filter: brightness(0.8) grayscale(0); }
+  .portfolio-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .portfolio-overlay h3 { font-size: 1.1rem; }
+  .portfolio-overlay span { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ash); }
+
+  .portfolio-nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 36px;
+  }
+  .portfolio-nav button {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    color: var(--white);
+    font-size: 1rem;
+    cursor: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    backdrop-filter: var(--blur);
+  }
+  .portfolio-nav button:hover { background: var(--glass-hover); border-color: rgba(255,255,255,0.25); }
+
+  /* ══════════════════════════════
+     TESTIMONIALS
+  ══════════════════════════════ */
+  #testimonials {
+    background: linear-gradient(180deg, #0d0d0d 0%, var(--black) 100%);
+  }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 64px;
+  }
+  .testimonial-card {
+    padding: 32px;
+    border-radius: var(--radius-lg);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: var(--blur);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .testimonial-card:hover {
+    background: var(--glass-hover);
+    border-color: rgba(255,255,255,0.15);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-sm);
+  }
+  .stars { display: flex; gap: 3px; }
+  .star { color: var(--ash); font-size: 0.85rem; }
+  .testimonial-text {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--mist);
+    line-height: 1.65;
+    flex: 1;
+  }
+  .testimonial-author { display: flex; align-items: center; gap: 14px; }
+  .author-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    filter: grayscale(0.3);
+    border: 1px solid var(--glass-border);
+  }
+  .author-info .name { font-size: 0.88rem; font-weight: 400; }
+  .author-info .role { font-size: 0.72rem; color: var(--silver); text-transform: uppercase; letter-spacing: 0.1em; }
+
+  /* ══════════════════════════════
+     BRANDS MARQUEE
+  ══════════════════════════════ */
+  #brands {
+    padding: 80px 0;
+    background: var(--black);
+    border-top: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--glass-border);
+    overflow: hidden;
+  }
+  .brands-label {
+    text-align: center;
+    margin-bottom: 48px;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--steel);
+  }
+  .marquee-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+  .marquee-wrapper::before,
+  .marquee-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 120px;
+    z-index: 2;
+  }
+  .marquee-wrapper::before { left: 0; background: linear-gradient(to right, var(--black), transparent); }
+  .marquee-wrapper::after { right: 0; background: linear-gradient(to left, var(--black), transparent); }
+
+  .marquee-track {
+    display: flex;
+    gap: 60px;
+    width: max-content;
+    animation: marqueeScroll 28s linear infinite;
+  }
+  .marquee-track:hover { animation-play-state: paused; }
+  @keyframes marqueeScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .brand-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 32px;
+    border-radius: 100px;
+    border: 1px solid var(--glass-border);
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: var(--steel);
+    white-space: nowrap;
+    transition: var(--transition);
+    cursor: default;
+    user-select: none;
+  }
+  .brand-item:hover { color: var(--mist); border-color: rgba(255,255,255,0.2); background: var(--glass-bg); }
+
+  /* ══════════════════════════════
+     CONTACT CTA
+  ══════════════════════════════ */
+  #contact {
+    padding: 160px 5%;
+    background: linear-gradient(180deg, var(--black) 0%, #0a0a0a 100%);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-orb {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(70,70,70,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  #contact h2 { max-width: 640px; margin: 0 auto 24px; position: relative; z-index: 1; }
+  #contact p { max-width: 440px; margin: 0 auto 48px; position: relative; z-index: 1; }
+  .contact-actions { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; position: relative; z-index: 1; }
+
+  /* ══════════════════════════════
+     FOOTER
+  ══════════════════════════════ */
+  footer {
+    padding: 60px 5% 40px;
+    border-top: 1px solid var(--glass-border);
+    background: var(--black);
+  }
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+  }
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+  }
+  .footer-tagline { font-size: 0.8rem; color: var(--steel); margin-top: 6px; }
+  .footer-links {
+    display: flex;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+  .footer-col h4 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--silver); margin-bottom: 20px; }
+  .footer-col a {
+    display: block;
+    color: var(--steel);
+    text-decoration: none;
+    font-size: 0.88rem;
+    margin-bottom: 10px;
+    transition: color 0.3s;
+  }
+  .footer-col a:hover { color: var(--white); }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.78rem;
+    color: var(--steel);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* ══════════════════════════════
+     CART DRAWER
+  ══════════════════════════════ */
+  .cart-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(6px);
+    z-index: 200;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s;
+  }
+  .cart-overlay.open { opacity: 1; pointer-events: all; }
+
+  .cart-drawer {
+    position: fixed;
+    top: 0; right: 0; bottom: 0;
+    width: min(480px, 100vw);
+    background: rgba(14,14,14,0.97);
+    backdrop-filter: var(--blur);
+    border-left: 1px solid var(--glass-border);
+    z-index: 201;
+    transform: translateX(100%);
+    transition: transform var(--transition);
+    display: flex;
+    flex-direction: column;
+  }
+  .cart-drawer.open { transform: translateX(0); }
+
+  .cart-header {
+    padding: 28px 28px 20px;
+    border-bottom: 1px solid var(--glass-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .cart-header h3 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 400; }
+  .cart-close {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--white);
+    font-size: 1.1rem;
+    cursor: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+  }
+  .cart-close:hover { background: var(--glass-hover); }
+
+  .cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-radius: var(--radius);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+  }
+  .cart-item-name { font-size: 0.9rem; font-weight: 400; }
+  .cart-item-price { font-family: var(--font-display); font-size: 1.1rem; color: var(--ash); }
+  .cart-item-remove {
+    background: none; border: none;
+    color: var(--steel); cursor: none;
+    font-size: 1.1rem;
+    padding: 4px;
+    margin-left: 12px;
+    transition: color 0.2s;
+  }
+  .cart-item-remove:hover { color: var(--white); }
+  .cart-empty {
+    text-align: center;
+    padding: 60px 0;
+    color: var(--steel);
+    font-size: 0.9rem;
+  }
+
+  .cart-form {
+    padding: 20px 28px 28px;
+    border-top: 1px solid var(--glass-border);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--silver); }
+  .form-input {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  .form-input:focus { border-color: rgba(255,255,255,0.3); }
+  .form-input::placeholder { color: var(--steel); }
+
+  .send-btn {
+    padding: 15px;
+    border-radius: 12px;
+    background: var(--white);
+    color: var(--black);
+    border: none;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: none;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 4px;
+  }
+  .send-btn:hover { background: var(--pure); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,255,255,0.1); }
+  .send-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+  .form-success {
+    text-align: center;
+    padding: 24px;
+    font-size: 0.9rem;
+    color: var(--ash);
+    display: none;
+  }
+
+  /* ══════════════════════════════
+     WHATSAPP
+  ══════════════════════════════ */
+  .whatsapp-fab {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 150;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: #1a1a1a;
+    border: 1px solid rgba(37,211,102,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: var(--transition);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  }
+  .whatsapp-fab:hover {
+    background: rgba(37,211,102,0.12);
+    border-color: rgba(37,211,102,0.6);
+    transform: scale(1.1);
+    box-shadow: 0 8px 30px rgba(37,211,102,0.15);
+  }
+  .whatsapp-fab svg { width: 26px; height: 26px; fill: #25d366; }
+
+  /* ══════════════════════════════
+     REVEAL ANIMATIONS
+  ══════════════════════════════ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ══════════════════════════════
+     TOAST
+  ══════════════════════════════ */
+  .toast {
+    position: fixed;
+    bottom: 100px;
+    right: 28px;
+    z-index: 300;
+    padding: 14px 22px;
+    border-radius: 12px;
+    background: rgba(20,20,20,0.95);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: var(--blur);
+    font-size: 0.85rem;
+    color: var(--white);
+    transform: translateY(20px);
+    opacity: 0;
+    transition: var(--transition);
+    pointer-events: none;
+  }
+  .toast.show { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Coconut</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#testimonials">Clients</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="cart-btn" id="cartToggle">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      Cart
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-dot"></div>
+      <span class="section-label" style="margin:0;gap:0;padding:0">Creative Agency · Karachi</span>
+    </div>
+    <h1>We Create<br/><em>Powerful</em><br/>Visual Stories</h1>
+    <p class="hero-sub">From branded video ads to influencer campaigns — we craft content that converts and culture that sticks.</p>
+    <div class="hero-cta">
+      <a href="#services" class="btn btn-white">View Services</a>
+      <a href="#portfolio" class="btn btn-outline">See Our Work</a>
+    </div>
+  </div>
+
+  <div class="hero-float-card glass">
+    <div class="stat">200+</div>
+    <div class="stat-label">Projects Delivered</div>
+    <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--glass-border)">
+      <div class="stat">98%</div>
+      <div class="stat-label">Client Satisfaction</div>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    Scroll to explore
+  </div>
+</section>
+
+<!-- ══ SERVICES ══ -->
+<section id="services">
+  <div class="section-header reveal">
+    <span class="section-label">What We Do</span>
+    <h2>Our Services</h2>
+  </div>
+  <div class="services-grid">
+
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-img">
+        <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&q=80" alt="Video Ad"/>
+        <span class="service-badge">Most Popular</span>
+      </div>
+      <div class="service-body">
+        <div class="service-name">Professional Video Ad</div>
+        <p class="service-desc">Cinematic, brand-forward video commercials crafted to captivate your audience and drive measurable results.</p>
+        <div class="service-footer">
+          <div class="price-tag">
+            <span class="price-label">Starting at</span>
+            <span class="price-value">PKR 25,000</span>
+          </div>
+          <button class="btn btn-ghost" onclick="addToCart('Professional Video Ad','PKR 25,000')">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-img">
+        <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=600&q=80" alt="Voiceover"/>
+      </div>
+      <div class="service-body">
+        <div class="service-name">Voiceover Video Ad</div>
+        <p class="service-desc">Polished video ads with professional voiceovers — compelling narration that guides viewers to action.</p>
+        <div class="service-footer">
+          <div class="price-tag">
+            <span class="price-label">Starting at</span>
+            <span class="price-value">PKR 18,000</span>
+          </div>
+          <button class="btn btn-ghost" onclick="addToCart('Voiceover Video Ad','PKR 18,000')">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-card reveal reveal-delay-3">
+      <div class="service-img">
+        <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=600&q=80" alt="Product Photography"/>
+      </div>
+      <div class="service-body">
+        <div class="service-name">Product Photography</div>
+        <p class="service-desc">Studio-quality product photography that showcases your brand with precision, elegance, and style.</p>
+        <div class="service-footer">
+          <div class="price-tag">
+            <span class="price-label">Starting at</span>
+            <span class="price-value">PKR 12,000</span>
+          </div>
+          <button class="btn btn-ghost" onclick="addToCart('Product Photography','PKR 12,000')">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-img">
+        <img src="https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?w=600&q=80" alt="Product Videography"/>
+      </div>
+      <div class="service-body">
+        <div class="service-name">Product Videography</div>
+        <p class="service-desc">Dynamic product showcase videos designed to stop the scroll, tell your product's story, and convert viewers.</p>
+        <div class="service-footer">
+          <div class="price-tag">
+            <span class="price-label">Starting at</span>
+            <span class="price-value">PKR 20,000</span>
+          </div>
+          <button class="btn btn-ghost" onclick="addToCart('Product Videography','PKR 20,000')">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-img">
+        <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&q=80" alt="Influencer Marketing"/>
+        <span class="service-badge">Premium</span>
+      </div>
+      <div class="service-body">
+        <div class="service-name">Influencer Marketing</div>
+        <p class="service-desc">Strategic influencer partnerships that amplify your brand's voice across Pakistan's most engaged audiences.</p>
+        <div class="service-footer">
+          <div class="price-tag">
+            <span class="price-label">Starting at</span>
+            <span class="price-value">PKR 35,000</span>
+          </div>
+          <button class="btn btn-ghost" onclick="addToCart('Influencer Marketing','PKR 35,000')">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section id="about">
+  <div class="about-layout">
+    <div class="about-visual reveal">
+      <img class="about-main-img" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80" alt="Team"/>
+      <div class="about-accent-card glass">
+        <div class="num">5+</div>
+        <div class="label">Years of Excellence</div>
+      </div>
+    </div>
+    <div class="about-text reveal reveal-delay-2">
+      <span class="section-label">Who We Are</span>
+      <h2 style="margin-top:16px">Storytellers.<br/><em>Strategists.<br/>Creators.</em></h2>
+      <p style="margin-top:28px">Coconut is a Karachi-based creative agency dedicated to one mission: building influence. We combine cinematic storytelling, strategic thinking, and cultural insight to craft content that doesn't just look good — it moves people.</p>
+      <p>From intimate product shoots to large-scale influencer campaigns, every project we touch carries the same obsessive attention to craft. We believe the best marketing isn't made, it's felt.</p>
+      <p>Our team of directors, photographers, and strategists bring decades of combined experience to every brief — treating every brand as if it were our own.</p>
+      <div class="about-stats">
+        <div class="about-stat"><div class="n">200+</div><div class="l">Projects</div></div>
+        <div class="about-stat"><div class="n">80+</div><div class="l">Brands</div></div>
+        <div class="about-stat"><div class="n">5M+</div><div class="l">Views</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PORTFOLIO ══ -->
+<section id="portfolio">
+  <div class="section-header reveal">
+    <span class="section-label">Our Work</span>
+    <h2>Portfolio</h2>
+  </div>
+
+  <div class="portfolio-track-wrapper">
+    <div class="portfolio-track" id="portfolioTrack">
+
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1505816014357-96b5ff457e9a?w=700&q=80" alt="Project"/>
+        <div class="portfolio-overlay"><span>Brand Campaign</span><h3>Luxe Apparel Launch</h3></div>
+      </div>
+
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80" alt="Project"/>
+        <div class="portfolio-overlay"><span>Product Video</span><h3>Skincare Brand TVC</h3></div>
+      </div>
+
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=700&q=80" alt="Project"/>
+        <div class="portfolio-overlay"><span>Photography</span><h3>E-Commerce Shoot</h3></div>
+      </div>
+
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=700&q=80" alt="Project"/>
+        <div class="portfolio-overlay"><span>Influencer</span><h3>Tech Product Launch</h3></div>
+      </div>
+
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=700&q=80" alt="Project"/>
+        <div class="portfolio-overlay"><span>Campaign</span><h3>F&B Brand Activation</h3></div>
+      </div>
+
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=700&q=80" alt="Project"/>
+        <div class="portfolio-overlay"><span>Video Ad</span><h3>Real Estate TVC</h3></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="portfolio-nav">
+    <button id="portPrev" aria-label="Previous">←</button>
+    <button id="portNext" aria-label="Next">→</button>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section id="testimonials">
+  <div class="section-header reveal">
+    <span class="section-label">Client Voices</span>
+    <h2>What Our Clients Say</h2>
+  </div>
+  <div class="testimonials-grid">
+
+    <div class="testimonial-card reveal reveal-delay-1">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"Coconut transformed our product launch. The video they produced was nothing short of cinematic — our sales spiked 40% in the first week."</p>
+      <div class="testimonial-author">
+        <img class="author-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80" alt="Client"/>
+        <div class="author-info">
+          <div class="name">Ahmed Raza</div>
+          <div class="role">CEO, Nova Apparel</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card reveal reveal-delay-2">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"The influencer campaign they managed for us was seamlessly executed. Brand awareness doubled in just two months. Exceptional team."</p>
+      <div class="testimonial-author">
+        <img class="author-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80" alt="Client"/>
+        <div class="author-info">
+          <div class="name">Sara Iqbal</div>
+          <div class="role">Marketing Director, GlowSkin</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card reveal reveal-delay-3">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"Their photography work is stunning. The product shots they delivered were used across our entire campaign and received incredible engagement."</p>
+      <div class="testimonial-author">
+        <img class="author-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80" alt="Client"/>
+        <div class="author-info">
+          <div class="name">Bilal Khan</div>
+          <div class="role">Founder, UrbanEats</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ BRANDS ══ -->
+<section id="brands">
+  <p class="brands-label">Trusted By</p>
+  <div class="marquee-wrapper">
+    <div class="marquee-track" id="marqueeTrack">
+      <div class="brand-item">Nova Apparel</div>
+      <div class="brand-item">GlowSkin</div>
+      <div class="brand-item">UrbanEats</div>
+      <div class="brand-item">Pixel Labs</div>
+      <div class="brand-item">SkyHomes</div>
+      <div class="brand-item">FreshBrew</div>
+      <div class="brand-item">Velocity Tech</div>
+      <div class="brand-item">Karma Beauty</div>
+      <div class="brand-item">Meridian Co.</div>
+      <div class="brand-item">Nova Apparel</div>
+      <div class="brand-item">GlowSkin</div>
+      <div class="brand-item">UrbanEats</div>
+      <div class="brand-item">Pixel Labs</div>
+      <div class="brand-item">SkyHomes</div>
+      <div class="brand-item">FreshBrew</div>
+      <div class="brand-item">Velocity Tech</div>
+      <div class="brand-item">Karma Beauty</div>
+      <div class="brand-item">Meridian Co.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT CTA ══ -->
+<section id="contact">
+  <div class="contact-orb"></div>
+  <span class="section-label" style="justify-content:center" class="reveal">Get In Touch</span>
+  <h2 class="reveal" style="margin-top:16px">Ready to Create<br/><em>Influence?</em></h2>
+  <p class="reveal">Let's build something remarkable together. Add services to your cart or reach out directly.</p>
+  <div class="contact-actions reveal">
+    <button class="btn btn-white" onclick="document.getElementById('cartToggle').click()">Open Cart</button>
+    <a href="mailto:coconutmux@gmail.com" class="btn btn-outline">Email Us</a>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Coconut</div>
+      <div class="footer-tagline">We Create Influence</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="#services">Video Ads</a>
+        <a href="#services">Photography</a>
+        <a href="#services">Videography</a>
+        <a href="#services">Influencer</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#about">About Us</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:coconutmux@gmail.com">coconutmux@gmail.com</a>
+        <a href="https://wa.me/923001234567">WhatsApp</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Coconut Creative Agency. All rights reserved.</span>
+    <span>Karachi, Pakistan</span>
+  </div>
+</footer>
+
+<!-- ══ CART OVERLAY + DRAWER ══ -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <button class="cart-close" onclick="closeCart()">×</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty" id="cartEmpty">No services selected yet.</div>
+  </div>
+  <div class="cart-form" id="cartForm">
+    <div class="form-group">
+      <label class="form-label">Your Name</label>
+      <input type="text" class="form-input" id="customerName" placeholder="e.g. Ahmed Raza"/>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Phone Number</label>
+      <input type="tel" class="form-input" id="customerPhone" placeholder="e.g. 0300-1234567"/>
+    </div>
+    <button class="send-btn" id="sendBtn" onclick="sendInquiry()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      Send Inquiry
+    </button>
+    <div class="form-success" id="formSuccess">✓ Inquiry sent! We'll be in touch shortly.</div>
+  </div>
+</div>
+
+<!-- ══ WHATSAPP FAB ══ -->
+<a href="https://wa.me/923001234567" class="whatsapp-fab" target="_blank" rel="noopener" title="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<script>
+  // ── EMAIL JS INIT ──
+  emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+
+  // ── CURSOR ──
+  const cursor = document.getElementById('cursor');
+  const cursorRing = document.getElementById('cursorRing');
+  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    cursor.style.left = mouseX + 'px';
+    cursor.style.top = mouseY + 'px';
+  });
+  (function animateRing() {
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+    cursorRing.style.left = ringX + 'px';
+    cursorRing.style.top = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  })();
+
+  // ── NAV SCROLL ──
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // ── REVEAL ON SCROLL ──
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── CART STATE ──
+  let cartItems = [];
+
+  function addToCart(name, price) {
+    if (cartItems.find(i => i.name === name)) {
+      showToast('Already in cart');
+      return;
+    }
+    cartItems.push({ name, price });
+    updateCartUI();
+    openCart();
+    showToast('Added: ' + name);
+  }
+
+  function removeFromCart(idx) {
+    cartItems.splice(idx, 1);
+    updateCartUI();
+  }
+
+  function updateCartUI() {
+    const count = cartItems.length;
+    const countEl = document.getElementById('cartCount');
+    countEl.textContent = count;
+    countEl.classList.toggle('visible', count > 0);
+
+    const container = document.getElementById('cartItems');
+    const empty = document.getElementById('cartEmpty');
+    empty.style.display = count === 0 ? 'block' : 'none';
+
+    // Remove old item elements
+    container.querySelectorAll('.cart-item').forEach(el => el.remove());
+    cartItems.forEach((item, idx) => {
+      const div = document.createElement('div');
+      div.className = 'cart-item';
+      div.innerHTML = `
+        <div>
+          <div class="cart-item-name">${item.name}</div>
+          <div class="cart-item-price">${item.price}</div>
+        </div>
+        <button class="cart-item-remove" onclick="removeFromCart(${idx})">×</button>
+      `;
+      container.appendChild(div);
+    });
+  }
+
+  function openCart() {
+    document.getElementById('cartDrawer').classList.add('open');
+    document.getElementById('cartOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeCart() {
+    document.getElementById('cartDrawer').classList.remove('open');
+    document.getElementById('cartOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('cartToggle').addEventListener('click', () => {
+    document.getElementById('cartDrawer').classList.contains('open') ? closeCart() : openCart();
+  });
+
+  // ── SEND INQUIRY ──
+  async function sendInquiry() {
+    const name = document.getElementById('customerName').value.trim();
+    const phone = document.getElementById('customerPhone').value.trim();
+    if (!name || !phone) { showToast('Please fill in your details'); return; }
+    if (cartItems.length === 0) { showToast('Your cart is empty'); return; }
+
+    const btn = document.getElementById('sendBtn');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    const servicesList = cartItems.map(i => `• ${i.name} (${i.price})`).join('\n');
+
+    try {
+      await emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+        to_email: "coconutmux@gmail.com",
+        customer_name: name,
+        customer_phone: phone,
+        services: servicesList,
+        reply_to: "coconutmux@gmail.com"
+      });
+      document.getElementById('formSuccess').style.display = 'block';
+      btn.style.display = 'none';
+      cartItems = [];
+      updateCartUI();
+      showToast('Inquiry sent successfully!');
+    } catch (err) {
+      // Fallback: open mailto if EmailJS not configured
+      const body = `Name: ${name}\nPhone: ${phone}\n\nServices:\n${servicesList}`;
+      window.open(`mailto:coconutmux@gmail.com?subject=Service Inquiry from ${name}&body=${encodeURIComponent(body)}`);
+      btn.disabled = false;
+      btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Inquiry';
+      showToast('Opening email client…');
+    }
+  }
+
+  // ── PORTFOLIO NAV ──
+  const track = document.getElementById('portfolioTrack');
+  document.getElementById('portPrev').addEventListener('click', () => {
+    track.scrollBy({ left: -400, behavior: 'smooth' });
+  });
+  document.getElementById('portNext').addEventListener('click', () => {
+    track.scrollBy({ left: 400, behavior: 'smooth' });
+  });
+
+  // ── TOAST ──
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2800);
+  }
+
+  // ── SMOOTH SCROLL for CTA ──
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+
+  // ── MOBILE NAV (hamburger placeholder) ──
+  document.getElementById('navHamburger').addEventListener('click', () => {
+    showToast('Menu — scroll to explore sections');
+  });
+</script>
+</body>
+</html>

@@ -4,10 +4,14 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Coconut Creatives — We Create Influence</title>
+<meta name="theme-color" content="#080808"/>
+<meta name="description" content="Coconut Creatives — Premium creative agency in Karachi. Video ads, photography, influencer marketing."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://i.ibb.co" crossorigin/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/></noscript>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
 <style>
 /* ═══════════════════════════════════════════
    ROOT VARIABLES
@@ -51,10 +55,15 @@ body {
 }
 
 /* ── CURSOR ── */
-.cursor { position: fixed; width: 8px; height: 8px; background: var(--pure); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.3s, height 0.3s, background 0.3s; mix-blend-mode: difference; }
-.cursor-ring { position: fixed; width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.35); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width 0.35s var(--ease), height 0.35s var(--ease), border-color 0.3s; }
-body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring { width: 60px; height: 60px; border-color: rgba(255,255,255,0.65); }
-body:has(.portfolio-reel-item:hover) .cursor { width: 56px; height: 56px; background: rgba(255,255,255,0.9); }
+.cursor { position: fixed; width: 8px; height: 8px; background: var(--pure); border-radius: 50%; pointer-events: none; z-index: 9999; left: -100px; top: -100px; transition: width 0.25s, height 0.25s; display: none; }
+.cursor-ring { position: fixed; width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.4); border-radius: 50%; pointer-events: none; z-index: 9998; left: -100px; top: -100px; transition: width 0.3s var(--ease), height 0.3s var(--ease), border-color 0.25s; display: none; }
+/* Only show custom cursor on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+  body { cursor: none; }
+  .cursor { display: block; }
+  .cursor-ring { display: block; }
+}
+body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring { width: 54px; height: 54px; border-color: rgba(255,255,255,0.65); }
 
 /* ── SCROLLBAR ── */
 ::-webkit-scrollbar { width: 2px; }
@@ -62,7 +71,7 @@ body:has(.portfolio-reel-item:hover) .cursor { width: 56px; height: 56px; backgr
 ::-webkit-scrollbar-thumb { background: var(--steel); border-radius: 2px; }
 
 /* ── GLASS ── */
-.glass { background: var(--glass-bg); backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur); border: 1px solid var(--glass-border); border-radius: var(--radius); }
+.glass { background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: var(--radius); }
 
 /* ── TYPOGRAPHY ── */
 h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.06; }
@@ -135,7 +144,8 @@ nav.scrolled { background: rgba(8,8,8,0.9); backdrop-filter: var(--blur); border
   background: var(--mid);
   box-shadow: 0 20px 60px rgba(0,0,0,0.55);
   border: 1px solid rgba(255,255,255,0.06);
-  animation: cardFloat linear infinite;
+  animation: cardFloat ease-in-out infinite;
+  will-change: transform;
 }
 .hcard img, .hcard video { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.8); }
 
@@ -153,9 +163,8 @@ nav.scrolled { background: rgba(8,8,8,0.9); backdrop-filter: var(--blur); border
 .hcard-placeholder { width: 100%; height: 100%; background: var(--charcoal); display: flex; align-items: center; justify-content: center; color: var(--steel); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; text-align: center; padding: 10px; }
 
 @keyframes cardFloat {
-  0%   { transform: rotate(var(--r, -8deg)) translateY(0px); }
-  50%  { transform: rotate(var(--r, -8deg)) translateY(-12px); }
-  100% { transform: rotate(var(--r, -8deg)) translateY(0px); }
+  0%,100% { transform: translateY(0px); }
+  50%      { transform: translateY(-10px); }
 }
 
 /* Hero center content */
@@ -395,7 +404,6 @@ section { padding: 110px 5%; }
   border-radius: 50%;
   border: 1px solid var(--glass-border);
   background: var(--glass-bg);
-  backdrop-filter: var(--blur);
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -493,12 +501,14 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
 /* ═══════════════════════════════════════════
    REVEAL ANIMATIONS
 ═══════════════════════════════════════════ */
-.reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.85s var(--ease), transform 0.85s var(--ease); }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.32s; }
-.reveal-delay-4 { transition-delay: 0.44s; }
+/* Reveal — starts invisible only after JS loads (set by JS) */
+.reveal { opacity: 1; transform: none; transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+.js-loaded .reveal { opacity: 0; transform: translateY(28px); }
+.js-loaded .reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
 
 /* ═══════════════════════════════════════════
    TOAST
@@ -1203,26 +1213,38 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
   // ── CURSOR ──
   const cursor = document.getElementById('cursor');
   const ring   = document.getElementById('cursorRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => {
+  let mx = -200, my = -200, rx = -200, ry = -200, rafActive = false;
+  function moveCursor(e) {
     mx = e.clientX; my = e.clientY;
     cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
-  });
-  (function animRing() {
-    rx += (mx - rx) * 0.11; ry += (my - ry) * 0.11;
+    if (!rafActive) { rafActive = true; animRing(); }
+  }
+  document.addEventListener('mousemove', moveCursor, { passive: true });
+  function animRing() {
+    rx += (mx - rx) * 0.13; ry += (my - ry) * 0.13;
     ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-    requestAnimationFrame(animRing);
-  })();
+    if (Math.abs(mx - rx) > 0.5 || Math.abs(my - ry) > 0.5) {
+      requestAnimationFrame(animRing);
+    } else { rafActive = false; }
+  }
 
   // ── NAV SCROLL ──
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
 
   // ── SCROLL REVEAL ──
+  // Add js-loaded so reveal CSS kicks in (before this, everything is visible)
+  document.body.classList.add('js-loaded');
   const revObs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); } });
-  }, { threshold: 0.1 });
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); }
+    });
+  }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+  // Fallback: if IntersectionObserver doesn't fire, show everything after 500ms
+  setTimeout(() => {
+    document.querySelectorAll('.reveal:not(.visible)').forEach(el => el.classList.add('visible'));
+  }, 500);
 
   // ── HERO CARDS — individual float rotation override ──
   document.querySelectorAll('.hcard').forEach(card => {

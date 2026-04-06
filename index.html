@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/></noscript>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
 /* ═══════════════════════════════════════════
    ROOT VARIABLES
@@ -51,7 +51,7 @@ body {
   font-weight: 300;
   line-height: 1.65;
   overflow-x: hidden;
-  cursor: none;
+  cursor: auto;
 }
 
 /* ── CURSOR ── */
@@ -83,7 +83,7 @@ p { font-size: 0.93rem; color: var(--ash); font-weight: 300; line-height: 1.7; }
 .section-label::before { content: ''; width: 30px; height: 1px; background: var(--silver); flex-shrink: 0; }
 
 /* ── BUTTONS ── */
-.btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; border-radius: 100px; font-family: var(--font-body); font-size: 0.8rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; cursor: none; transition: var(--transition); border: none; text-decoration: none; white-space: nowrap; }
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; border-radius: 100px; font-family: var(--font-body); font-size: 0.8rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: var(--transition); border: none; text-decoration: none; white-space: nowrap; }
 .btn-white { background: var(--pure); color: var(--black); }
 .btn-white:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(255,255,255,0.15); }
 .btn-outline { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: var(--white); backdrop-filter: var(--blur); }
@@ -109,11 +109,11 @@ nav.scrolled { background: rgba(8,8,8,0.9); backdrop-filter: var(--blur); border
 .nav-links a:hover { color: var(--pure); }
 .nav-links a:hover::after { width: 100%; }
 .nav-right { display: flex; align-items: center; gap: 16px; }
-.cart-btn { background: var(--glass-bg); border: 1px solid var(--glass-border); color: var(--white); padding: 10px 18px; border-radius: 100px; cursor: none; font-size: 0.82rem; display: flex; align-items: center; gap: 8px; transition: var(--transition); backdrop-filter: var(--blur); }
+.cart-btn { background: var(--glass-bg); border: 1px solid var(--glass-border); color: var(--white); padding: 10px 18px; border-radius: 100px; cursor: pointer; font-size: 0.82rem; display: flex; align-items: center; gap: 8px; transition: var(--transition); backdrop-filter: var(--blur); }
 .cart-btn:hover { background: var(--glass-hover); border-color: rgba(255,255,255,0.2); }
 .cart-count { background: var(--pure); color: var(--black); width: 18px; height: 18px; border-radius: 50%; font-size: 0.65rem; font-weight: 600; display: none; align-items: center; justify-content: center; }
 .cart-count.visible { display: flex; }
-.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: none; padding: 4px; background: none; border: none; }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
 .nav-hamburger span { display: block; width: 22px; height: 1px; background: var(--white); transition: var(--transition); }
 @media (max-width: 768px) { .nav-links { display: none; } .nav-hamburger { display: flex; } }
 
@@ -253,7 +253,7 @@ section { padding: 110px 5%; }
   border-radius: var(--radius-lg);
   overflow: hidden;
   background: var(--mid);
-  cursor: none;
+  cursor: pointer;
   /* 9:16 ratio */
   aspect-ratio: 9/16;
   transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
@@ -356,7 +356,7 @@ section { padding: 110px 5%; }
   border: 1px solid rgba(255,255,255,0.2);
   color: white; font-size: 1.1rem;
   display: flex; align-items: center; justify-content: center;
-  cursor: none; z-index: 2; transition: background 0.3s;
+  cursor: pointer; z-index: 2; transition: background 0.3s;
 }
 .modal-close:hover { background: rgba(255,255,255,0.15); }
 
@@ -471,13 +471,13 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
 .cart-drawer.open { transform: translateX(0); }
 .cart-header { padding: 26px 28px 20px; border-bottom: 1px solid var(--glass-border); display: flex; align-items: center; justify-content: space-between; }
 .cart-header h3 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; }
-.cart-close { width: 36px; height: 36px; border-radius: 50%; background: var(--glass-bg); border: 1px solid var(--glass-border); color: var(--white); font-size: 1rem; cursor: none; display: flex; align-items: center; justify-content: center; transition: background 0.3s; }
+.cart-close { width: 36px; height: 36px; border-radius: 50%; background: var(--glass-bg); border: 1px solid var(--glass-border); color: var(--white); font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.3s; }
 .cart-close:hover { background: var(--glass-hover); }
 .cart-items { flex: 1; overflow-y: auto; padding: 20px 28px; display: flex; flex-direction: column; gap: 12px; }
 .cart-item { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; border-radius: var(--radius); background: var(--glass-bg); border: 1px solid var(--glass-border); }
 .cart-item-name { font-size: 0.88rem; font-weight: 400; }
 .cart-item-price { font-family: var(--font-display); font-size: 1.05rem; color: var(--ash); }
-.cart-item-remove { background: none; border: none; color: var(--steel); cursor: none; font-size: 1rem; padding: 4px; margin-left: 10px; transition: color 0.2s; }
+.cart-item-remove { background: none; border: none; color: var(--steel); cursor: pointer; font-size: 1rem; padding: 4px; margin-left: 10px; transition: color 0.2s; }
 .cart-item-remove:hover { color: var(--white); }
 .cart-empty { text-align: center; padding: 60px 0; color: var(--silver); font-size: 0.88rem; }
 .cart-form { padding: 18px 28px 28px; border-top: 1px solid var(--glass-border); display: flex; flex-direction: column; gap: 14px; }
@@ -486,7 +486,7 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
 .form-input { background: rgba(255,255,255,0.04); border: 1px solid var(--glass-border); border-radius: 10px; padding: 12px 16px; color: var(--white); font-family: var(--font-body); font-size: 0.88rem; outline: none; transition: border-color 0.3s; }
 .form-input:focus { border-color: rgba(255,255,255,0.28); }
 .form-input::placeholder { color: var(--steel); }
-.send-btn { padding: 15px; border-radius: 12px; background: var(--white); color: var(--black); border: none; font-family: var(--font-body); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; cursor: none; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 10px; }
+.send-btn { padding: 15px; border-radius: 12px; background: var(--white); color: var(--black); border: none; font-family: var(--font-body); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 10px; }
 .send-btn:hover { background: var(--pure); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(255,255,255,0.12); }
 .send-btn:disabled { opacity: 0.5; transform: none; }
 .form-success { text-align: center; padding: 22px; font-size: 0.88rem; color: var(--ash); display: none; }
@@ -869,7 +869,7 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
   <div class="portfolio-reel-grid reveal">
 
     <!-- ✏️ REEL 1 — Instagram: https://www.instagram.com/p/DWhm6aBkrhg/ -->
-    <div class="portfolio-reel-item featured" style="cursor:pointer;" onclick="window.open(this.getAttribute('data-insta'),'_blank')" data-insta="https://www.instagram.com/p/DWhm6aBkrhg/">
+    <div class="portfolio-reel-item featured" style="cursor:pointer;pointer-events:all;" onclick="window.open(this.getAttribute('data-insta'),'_blank')" data-insta="https://www.instagram.com/p/DWhm6aBkrhg/">
       <div class="reel-insta-bg">
         <div class="insta-gradient"></div>
         <div class="insta-play-wrap">
@@ -885,7 +885,7 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
     </div>
 
     <!-- ✏️ REEL 2 — Instagram: https://www.instagram.com/p/DN-xi5EiCDr/ -->
-    <div class="portfolio-reel-item" style="cursor:pointer;" onclick="window.open(this.getAttribute('data-insta'),'_blank')" data-insta="https://www.instagram.com/p/DN-xi5EiCDr/">
+    <div class="portfolio-reel-item" style="cursor:pointer;pointer-events:all;" onclick="window.open(this.getAttribute('data-insta'),'_blank')" data-insta="https://www.instagram.com/p/DN-xi5EiCDr/">
       <div class="reel-insta-bg">
         <div class="insta-gradient"></div>
         <div class="insta-play-wrap">
@@ -901,7 +901,7 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
     </div>
 
     <!-- ✏️ REEL 3 — Instagram: https://www.instagram.com/p/DHoBIxXoFIg/ -->
-    <div class="portfolio-reel-item" style="cursor:pointer;" onclick="window.open(this.getAttribute('data-insta'),'_blank')" data-insta="https://www.instagram.com/p/DHoBIxXoFIg/">
+    <div class="portfolio-reel-item" style="cursor:pointer;pointer-events:all;" onclick="window.open(this.getAttribute('data-insta'),'_blank')" data-insta="https://www.instagram.com/p/DHoBIxXoFIg/">
       <div class="reel-insta-bg">
         <div class="insta-gradient"></div>
         <div class="insta-play-wrap">
@@ -917,7 +917,7 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
     </div>
 
     <!-- ✏️ REEL 4 — Instagram: https://www.instagram.com/p/DWhls6wkv0r/ -->
-    <div class="portfolio-reel-item" style="cursor:pointer;" onclick="window.open(this.getAttribute('data-insta'),'_blank')" data-insta="https://www.instagram.com/p/DWhls6wkv0r/">
+    <div class="portfolio-reel-item" style="cursor:pointer;pointer-events:all;" onclick="window.open(this.getAttribute('data-insta'),'_blank')" data-insta="https://www.instagram.com/p/DWhls6wkv0r/">
       <div class="reel-insta-bg">
         <div class="insta-gradient"></div>
         <div class="insta-play-wrap">
@@ -933,7 +933,7 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
     </div>
 
     <!-- ✏️ REEL 5 — Instagram: https://www.instagram.com/p/DRseJvADF9M/ -->
-    <div class="portfolio-reel-item" style="cursor:pointer;" onclick="window.open(this.getAttribute('data-insta'),'_blank')" data-insta="https://www.instagram.com/p/DRseJvADF9M/">
+    <div class="portfolio-reel-item" style="cursor:pointer;pointer-events:all;" onclick="window.open(this.getAttribute('data-insta'),'_blank')" data-insta="https://www.instagram.com/p/DRseJvADF9M/">
       <div class="reel-insta-bg">
         <div class="insta-gradient"></div>
         <div class="insta-play-wrap">
@@ -949,7 +949,7 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
     </div>
 
     <!-- ✏️ REEL 6 — Instagram: https://www.instagram.com/p/DWhmoKukl1e/ -->
-    <div class="portfolio-reel-item" style="cursor:pointer;" onclick="window.open(this.getAttribute('data-insta'),'_blank')" data-insta="https://www.instagram.com/p/DWhmoKukl1e/">
+    <div class="portfolio-reel-item" style="cursor:pointer;pointer-events:all;" onclick="window.open(this.getAttribute('data-insta'),'_blank')" data-insta="https://www.instagram.com/p/DWhmoKukl1e/">
       <div class="reel-insta-bg">
         <div class="insta-gradient"></div>
         <div class="insta-play-wrap">
@@ -1201,6 +1201,7 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
 
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+document.addEventListener("DOMContentLoaded", function() {
   // ══════════════════════════════════════
   // ✏️ EMAIL JS — replace these 3 values
   // Get free keys at https://www.emailjs.com
@@ -1307,17 +1308,18 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
 
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVideoModal(); });
 
-  // ── CART ──
-  let cartItems = [];
+  // ── CART ── (exposed globally for onclick= attributes)
+  window._cartItems = [];
+  let cartItems = window._cartItems;
 
-  function addToCart(name, price) {
+  window.addToCart = function addToCart(name, price) {
     if (cartItems.find(i => i.name === name)) { showToast('Already in cart'); return; }
     cartItems.push({ name, price });
     updateCartUI(); openCart();
     showToast('Added: ' + name);
   }
 
-  function removeFromCart(idx) { cartItems.splice(idx, 1); updateCartUI(); }
+  window.removeFromCart = function removeFromCart(idx) { cartItems.splice(idx, 1); updateCartUI(); }
 
   function updateCartUI() {
     const count = cartItems.length;
@@ -1335,13 +1337,13 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
     });
   }
 
-  function openCart() {
+  window.openCart = function openCart() {
     document.getElementById('cartDrawer').classList.add('open');
     document.getElementById('cartOverlay').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
 
-  function closeCart() {
+  window.closeCart = function closeCart() {
     document.getElementById('cartDrawer').classList.remove('open');
     document.getElementById('cartOverlay').classList.remove('open');
     document.body.style.overflow = '';
@@ -1352,7 +1354,7 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
   });
 
   // ── SEND INQUIRY ──
-  async function sendInquiry() {
+  window.sendInquiry = async function sendInquiry() {
     const name    = document.getElementById('customerName').value.trim();
     const phone   = document.getElementById('customerPhone').value.trim();
     const brand   = document.getElementById('customerBrand')?.value.trim() || '';
@@ -1382,7 +1384,7 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
   }
 
   // ── TOAST ──
-  function showToast(msg) {
+  window.showToast = function showToast(msg) {
     const t = document.getElementById('toast');
     t.textContent = msg; t.classList.add('show');
     setTimeout(() => t.classList.remove('show'), 2800);

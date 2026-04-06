@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Coconut — We Create Influence</title>
+<title>Coconut Creatives — We Create Influence</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
@@ -505,6 +505,46 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
 ═══════════════════════════════════════════ */
 .toast { position: fixed; bottom: 100px; right: 28px; z-index: 400; padding: 13px 20px; border-radius: 12px; background: rgba(18,18,18,0.96); border: 1px solid var(--glass-border); backdrop-filter: var(--blur); font-size: 0.82rem; color: var(--white); transform: translateY(16px); opacity: 0; transition: var(--transition); pointer-events: none; max-width: 280px; }
 .toast.show { opacity: 1; transform: translateY(0); }
+
+  /* Instagram Reel Cards */
+  .reel-insta-bg {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 30%, #0f3460 60%, #533483 100%);
+    position: relative;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+  }
+  .insta-gradient {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(255,255,255,0.04) 0%, transparent 70%);
+  }
+  .insta-play-wrap {
+    position: relative; z-index: 2;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .insta-play-circle {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(8px);
+    border: 1.5px solid rgba(255,255,255,0.3);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.3s, background 0.3s;
+  }
+  .portfolio-reel-item:hover .insta-play-circle {
+    transform: scale(1.18);
+    background: rgba(255,255,255,0.25);
+  }
+  .insta-footer {
+    position: absolute; bottom: 18px; left: 0; right: 0;
+    display: flex; align-items: center; justify-content: center;
+    gap: 7px; z-index: 2;
+    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    font-family: var(--font-body);
+    opacity: 0; transition: opacity 0.4s;
+  }
+  .portfolio-reel-item:hover .insta-footer { opacity: 1; }
+
 </style>
 </head>
 <body>
@@ -566,43 +606,51 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
 
     <!-- ✏️ HERO CARD 1 — top left (portrait) -->
     <!-- Replace .hcard-placeholder div with: <img src="YOUR_IMAGE_URL" alt=""/> -->
-    <div class=<img src="https://ibb.co/G43WNtbC" alt=""/>
-      <div class="hcard-placeholder">Add<br/>Image</div>
+    <div class="hcard hcard-1">
+      <img src="https://i.ibb.co/x8r0mY2S/x8r0mY2S.jpg" alt="Coconut Creative Work" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+      <div class="hcard-placeholder" style="display:none;">Add<br/>Image</div>
     </div>
 
     <!-- ✏️ HERO CARD 2 — top center (landscape) -->
-    <div class=<img src="https://ibb.co/G43WNtbC" alt="">
-      <div class="hcard-placeholder">Add<br/>Image</div>
+    <div class="hcard hcard-2">
+      <img src="https://i.ibb.co/3LRN8zk/3LRN8zk.jpg" alt="Coconut Creative Work" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+      <div class="hcard-placeholder" style="display:none;">Add<br/>Image</div>
     </div>
 
     <!-- ✏️ HERO CARD 3 — top right (portrait) -->
-    <div class=<img src="https://ibb.co/G43WNtbC" alt="">
-      <div class="hcard-placeholder">Add<br/>Image</div>
+    <div class="hcard hcard-3">
+      <img src="https://i.ibb.co/hx9vsLp3/hx9vsLp3.jpg" alt="Coconut Creative Work" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+      <div class="hcard-placeholder" style="display:none;">Add<br/>Image</div>
     </div>
 
     <!-- ✏️ HERO CARD 4 — mid left (landscape) -->
-    <div class=<img src="https://ibb.co/G43WNtbC" alt="">
-      <div class="hcard-placeholder">Add<br/>Image</div>
+    <div class="hcard hcard-4">
+      <img src="https://i.ibb.co/5gFCJ1Tr/5gFCJ1Tr.jpg" alt="Coconut Creative Work" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+      <div class="hcard-placeholder" style="display:none;">Add<br/>Image</div>
     </div>
 
     <!-- ✏️ HERO CARD 5 — mid right (portrait) -->
-    <div class=<img src="https://ibb.co/G43WNtbC" alt="">
-      <div class="hcard-placeholder">Add<br/>Image</div>
+    <div class="hcard hcard-5">
+      <img src="https://i.ibb.co/356zQ9Nr/356zQ9Nr.jpg" alt="Coconut Creative Work" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+      <div class="hcard-placeholder" style="display:none;">Add<br/>Image</div>
     </div>
 
     <!-- ✏️ HERO CARD 6 — bottom left (portrait) -->
-    <div class=<img src="https://ibb.co/G43WNtbC" alt="">
-      <div class="hcard-placeholder">Add<br/>Image</div>
+    <div class="hcard hcard-6">
+      <img src="https://i.ibb.co/cKb86mjZ/cKb86mjZ.jpg" alt="Coconut Creative Work" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+      <div class="hcard-placeholder" style="display:none;">Add<br/>Image</div>
     </div>
 
     <!-- ✏️ HERO CARD 7 — bottom right (landscape) -->
-    <div class=<img src="https://ibb.co/G43WNtbC" alt="">
-      <div class="hcard-placeholder">Add<br/>Image</div>
+    <div class="hcard hcard-7">
+      <img src="https://i.ibb.co/93hGkDZF/93hGkDZF.jpg" alt="Coconut Creative Work" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+      <div class="hcard-placeholder" style="display:none;">Add<br/>Image</div>
     </div>
 
     <!-- ✏️ HERO CARD 8 — bottom center (portrait) -->
-    <div class=<img src="https://ibb.co/G43WNtbC" alt="">
-      <div class="hcard-placeholder">Add<br/>Image</div>
+    <div class="hcard hcard-8">
+      <img src="https://i.ibb.co/Rkc71nLN/Rkc71nLN.jpg" alt="Coconut Creative Work" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+      <div class="hcard-placeholder" style="display:none;">Add<br/>Image</div>
     </div>
 
   </div>
@@ -612,7 +660,7 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
     <!-- ✏️ EYEBROW TAG -->
     <div class="hero-tag">
       <span class="hero-tag-dot"></span>
-      Creative Agency · Pakistan
+      Creative Agency · Karachi
     </div>
 
     <!-- ✏️ MAIN HEADLINE -->
@@ -625,7 +673,7 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
     <div class="hero-cta">
       <a href="#services" class="btn btn-white">View Services</a>
       <!-- ✏️ BOOK APPOINTMENT LINK — replace # with your Calendly or booking URL -->
-      <a href="#contact" class="btn btn-appt">Book an Appointment</a>
+      <a href="https://wa.me/923133774329?text=Hello%20Coconut%20Creatives!%20I%20would%20like%20to%20book%20an%20appointment." class="btn btn-appt" target="_blank" rel="noopener">Book an Appointment</a>
       <a href="#portfolio" class="btn btn-outline">See Our Work</a>
     </div>
   </div>
@@ -652,7 +700,7 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
     <div class="service-card reveal reveal-delay-1">
       <div class="service-img">
         <!-- ✏️ SERVICE 1 IMAGE URL -->
-        <img src="YOUR_SERVICE_1_IMAGE_URL" alt="Professional Video Ad"
+        <img src="https://i.ibb.co/mCFS6VLN/mCFS6VLN.jpg" alt="Professional Video Ad"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
         <div class="service-img-placeholder" style="display:none;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M10 8l6 4-6 4V8z"/></svg>Add Image
@@ -673,7 +721,7 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
     <div class="service-card reveal reveal-delay-2">
       <div class="service-img">
         <!-- ✏️ SERVICE 2 IMAGE URL -->
-        <img src="YOUR_SERVICE_2_IMAGE_URL" alt="Voiceover Video Ad"
+        <img src="https://i.ibb.co/DPtdDQLQ/DPtdDQLQ.jpg" alt="Voiceover Video Ad"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
         <div class="service-img-placeholder" style="display:none;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M10 8l6 4-6 4V8z"/></svg>Add Image
@@ -693,7 +741,7 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
     <div class="service-card reveal reveal-delay-3">
       <div class="service-img">
         <!-- ✏️ SERVICE 3 IMAGE URL -->
-        <img src="YOUR_SERVICE_3_IMAGE_URL" alt="Product Photography"
+        <img src="https://i.ibb.co/jvcTxP0d/jvcTxP0d.jpg" alt="Product Photography"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
         <div class="service-img-placeholder" style="display:none;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M10 8l6 4-6 4V8z"/></svg>Add Image
@@ -713,7 +761,7 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
     <div class="service-card reveal reveal-delay-1">
       <div class="service-img">
         <!-- ✏️ SERVICE 4 IMAGE URL -->
-        <img src="YOUR_SERVICE_4_IMAGE_URL" alt="Product Videography"
+        <img src="https://i.ibb.co/VYr5VDpq/VYr5VDpq.jpg" alt="Product Videography"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
         <div class="service-img-placeholder" style="display:none;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M10 8l6 4-6 4V8z"/></svg>Add Image
@@ -733,7 +781,7 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
     <div class="service-card reveal reveal-delay-2">
       <div class="service-img">
         <!-- ✏️ SERVICE 5 IMAGE URL -->
-        <img src="YOUR_SERVICE_5_IMAGE_URL" alt="Influencer Marketing"
+        <img src="https://i.ibb.co/RTyzwTdj/RTyzwTdj.jpg" alt="Influencer Marketing"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
         <div class="service-img-placeholder" style="display:none;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M10 8l6 4-6 4V8z"/></svg>Add Image
@@ -761,7 +809,7 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
   <div class="about-layout">
     <div class="about-visual reveal">
       <!-- ✏️ ABOUT IMAGE URL -->
-      <img class="about-main-img" src="YOUR_ABOUT_IMAGE_URL" alt="Coconut Team"
+      <img class="about-main-img" src="https://i.ibb.co/8nbqKV35/8nbqKV35.jpg" alt="Coconut Team"
         onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
       <div class="about-img-placeholder" style="display:none;">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="2" width="20" height="20" rx="2"/><circle cx="12" cy="8" r="3"/><path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
@@ -778,7 +826,7 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
       <!-- ✏️ ABOUT HEADING -->
       <h2 style="margin-top:16px;">Storytellers.<br/><em>Strategists.<br/>Creators.</em></h2>
       <!-- ✏️ ABOUT TEXT PARAGRAPHS -->
-      <p style="margin-top:28px;">Coconut is a Pakistan-based creative agency dedicated to one mission: building influence. We combine cinematic storytelling, strategic thinking, and cultural insight to craft content that doesn't just look good — it moves people.</p>
+      <p style="margin-top:28px;">Coconut is a Karachi-based creative agency dedicated to one mission: building influence. We combine cinematic storytelling, strategic thinking, and cultural insight to craft content that doesn't just look good — it moves people.</p>
       <p>From intimate product shoots to large-scale influencer campaigns, every project we touch carries the same obsessive attention to craft. We believe the best marketing isn't made, it's felt.</p>
       <p>Our team of directors, photographers, and strategists bring years of experience to every brief — treating every brand as if it were our own.</p>
       <div class="about-stats">
@@ -810,109 +858,99 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
 
   <div class="portfolio-reel-grid reveal">
 
-    <!-- ══ REEL 1 — Featured ══ -->
-    <div class="portfolio-reel-item featured" onclick="openReel(this)">
-      <!-- ✏️ REEL 1 MEDIA -->
-      <!-- For video: <video src="YOUR_VIDEO_1.mp4" loop muted playsinline preload="none"></video> -->
-      <!-- For image: <img src="YOUR_IMAGE_1_URL" alt="Project 1"/> -->
-      <div class="reel-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M10 8l6 4-6 4V8z"/></svg>
-        Add Video / Image
-      </div>
-      <div class="reel-play">
-        <div class="reel-play-btn">
-          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+    <!-- ✏️ REEL 1 — Instagram: https://www.instagram.com/p/DWhm6aBkrhg/ -->
+    <div class="portfolio-reel-item featured" style="cursor:pointer;" onclick="window.open(this.getAttribute('data-insta'),'_blank')" data-insta="https://www.instagram.com/p/DWhm6aBkrhg/">
+      <div class="reel-insta-bg">
+        <div class="insta-gradient"></div>
+        <div class="insta-play-wrap">
+          <div class="insta-play-circle">
+            <svg viewBox="0 0 24 24" fill="white" width="24" height="24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+        <div class="insta-footer">
+          <svg viewBox="0 0 24 24" fill="rgba(255,255,255,0.7)" width="16" height="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <span>Tap to watch</span>
         </div>
       </div>
-      <div class="reel-info">
-        <!-- ✏️ REEL 1 LABEL & TITLE -->
-        <div class="reel-cat">Brand Campaign</div>
-        <div class="reel-title">Project Title Here</div>
+    </div>
+
+    <!-- ✏️ REEL 2 — Instagram: https://www.instagram.com/p/DN-xi5EiCDr/ -->
+    <div class="portfolio-reel-item" style="cursor:pointer;" onclick="window.open(this.getAttribute('data-insta'),'_blank')" data-insta="https://www.instagram.com/p/DN-xi5EiCDr/">
+      <div class="reel-insta-bg">
+        <div class="insta-gradient"></div>
+        <div class="insta-play-wrap">
+          <div class="insta-play-circle">
+            <svg viewBox="0 0 24 24" fill="white" width="24" height="24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+        <div class="insta-footer">
+          <svg viewBox="0 0 24 24" fill="rgba(255,255,255,0.7)" width="16" height="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <span>Tap to watch</span>
+        </div>
       </div>
     </div>
 
-    <!-- ══ REEL 2 ══ -->
-    <div class="portfolio-reel-item" onclick="openReel(this)">
-      <!-- ✏️ REEL 2 MEDIA -->
-      <div class="reel-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M10 8l6 4-6 4V8z"/></svg>
-        Add Video / Image
-      </div>
-      <div class="reel-play">
-        <div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-      </div>
-      <div class="reel-info">
-        <!-- ✏️ REEL 2 -->
-        <div class="reel-cat">Product Video</div>
-        <div class="reel-title">Project Title Here</div>
-      </div>
-    </div>
-
-    <!-- ══ REEL 3 ══ -->
-    <div class="portfolio-reel-item" onclick="openReel(this)">
-      <!-- ✏️ REEL 3 MEDIA -->
-      <div class="reel-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M10 8l6 4-6 4V8z"/></svg>
-        Add Video / Image
-      </div>
-      <div class="reel-play">
-        <div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-      </div>
-      <div class="reel-info">
-        <!-- ✏️ REEL 3 -->
-        <div class="reel-cat">Photography</div>
-        <div class="reel-title">Project Title Here</div>
+    <!-- ✏️ REEL 3 — Instagram: https://www.instagram.com/p/DHoBIxXoFIg/ -->
+    <div class="portfolio-reel-item" style="cursor:pointer;" onclick="window.open(this.getAttribute('data-insta'),'_blank')" data-insta="https://www.instagram.com/p/DHoBIxXoFIg/">
+      <div class="reel-insta-bg">
+        <div class="insta-gradient"></div>
+        <div class="insta-play-wrap">
+          <div class="insta-play-circle">
+            <svg viewBox="0 0 24 24" fill="white" width="24" height="24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+        <div class="insta-footer">
+          <svg viewBox="0 0 24 24" fill="rgba(255,255,255,0.7)" width="16" height="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <span>Tap to watch</span>
+        </div>
       </div>
     </div>
 
-    <!-- ══ REEL 4 ══ -->
-    <div class="portfolio-reel-item" onclick="openReel(this)">
-      <!-- ✏️ REEL 4 MEDIA -->
-      <div class="reel-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M10 8l6 4-6 4V8z"/></svg>
-        Add Video / Image
-      </div>
-      <div class="reel-play">
-        <div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-      </div>
-      <div class="reel-info">
-        <!-- ✏️ REEL 4 -->
-        <div class="reel-cat">Influencer</div>
-        <div class="reel-title">Project Title Here</div>
-      </div>
-    </div>
-
-    <!-- ══ REEL 5 ══ -->
-    <div class="portfolio-reel-item" onclick="openReel(this)">
-      <!-- ✏️ REEL 5 MEDIA -->
-      <div class="reel-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M10 8l6 4-6 4V8z"/></svg>
-        Add Video / Image
-      </div>
-      <div class="reel-play">
-        <div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-      </div>
-      <div class="reel-info">
-        <!-- ✏️ REEL 5 -->
-        <div class="reel-cat">Campaign</div>
-        <div class="reel-title">Project Title Here</div>
+    <!-- ✏️ REEL 4 — Instagram: https://www.instagram.com/p/DWhls6wkv0r/ -->
+    <div class="portfolio-reel-item" style="cursor:pointer;" onclick="window.open(this.getAttribute('data-insta'),'_blank')" data-insta="https://www.instagram.com/p/DWhls6wkv0r/">
+      <div class="reel-insta-bg">
+        <div class="insta-gradient"></div>
+        <div class="insta-play-wrap">
+          <div class="insta-play-circle">
+            <svg viewBox="0 0 24 24" fill="white" width="24" height="24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+        <div class="insta-footer">
+          <svg viewBox="0 0 24 24" fill="rgba(255,255,255,0.7)" width="16" height="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <span>Tap to watch</span>
+        </div>
       </div>
     </div>
 
-    <!-- ══ REEL 6 ══ -->
-    <div class="portfolio-reel-item" onclick="openReel(this)">
-      <!-- ✏️ REEL 6 MEDIA -->
-      <div class="reel-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M10 8l6 4-6 4V8z"/></svg>
-        Add Video / Image
+    <!-- ✏️ REEL 5 — Instagram: https://www.instagram.com/p/DRseJvADF9M/ -->
+    <div class="portfolio-reel-item" style="cursor:pointer;" onclick="window.open(this.getAttribute('data-insta'),'_blank')" data-insta="https://www.instagram.com/p/DRseJvADF9M/">
+      <div class="reel-insta-bg">
+        <div class="insta-gradient"></div>
+        <div class="insta-play-wrap">
+          <div class="insta-play-circle">
+            <svg viewBox="0 0 24 24" fill="white" width="24" height="24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+        <div class="insta-footer">
+          <svg viewBox="0 0 24 24" fill="rgba(255,255,255,0.7)" width="16" height="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <span>Tap to watch</span>
+        </div>
       </div>
-      <div class="reel-play">
-        <div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-      </div>
-      <div class="reel-info">
-        <!-- ✏️ REEL 6 -->
-        <div class="reel-cat">Video Ad</div>
-        <div class="reel-title">Project Title Here</div>
+    </div>
+
+    <!-- ✏️ REEL 6 — Instagram: https://www.instagram.com/p/DWhmoKukl1e/ -->
+    <div class="portfolio-reel-item" style="cursor:pointer;" onclick="window.open(this.getAttribute('data-insta'),'_blank')" data-insta="https://www.instagram.com/p/DWhmoKukl1e/">
+      <div class="reel-insta-bg">
+        <div class="insta-gradient"></div>
+        <div class="insta-play-wrap">
+          <div class="insta-play-circle">
+            <svg viewBox="0 0 24 24" fill="white" width="24" height="24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+        <div class="insta-footer">
+          <svg viewBox="0 0 24 24" fill="rgba(255,255,255,0.7)" width="16" height="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <span>Tap to watch</span>
+        </div>
       </div>
     </div>
 
@@ -996,70 +1034,7 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
   <p class="brands-label">Trusted By</p>
   <div class="marquee-wrapper">
     <div class="marquee-track">
-
-      <!-- ── FIRST HALF ── -->
-
-      <!-- ✏️ BRAND 1 — replace brand-circle-text or add <img> inside .brand-circle -->
-      <div class="brand-item">
-        <div class="brand-circle">
-          <!-- <img src="YOUR_BRAND_1_LOGO_URL" alt="Brand 1"/> -->
-          <div class="brand-circle-text">Brand<br/>1</div>
-        </div>
-        <span class="brand-name">Brand Name</span><!-- ✏️ -->
-      </div>
-
-      <!-- ✏️ BRAND 2 -->
-      <div class="brand-item">
-        <div class="brand-circle"><div class="brand-circle-text">Brand<br/>2</div></div>
-        <span class="brand-name">Brand Name</span><!-- ✏️ -->
-      </div>
-
-      <!-- ✏️ BRAND 3 -->
-      <div class="brand-item">
-        <div class="brand-circle"><div class="brand-circle-text">Brand<br/>3</div></div>
-        <span class="brand-name">Brand Name</span><!-- ✏️ -->
-      </div>
-
-      <!-- ✏️ BRAND 4 -->
-      <div class="brand-item">
-        <div class="brand-circle"><div class="brand-circle-text">Brand<br/>4</div></div>
-        <span class="brand-name">Brand Name</span><!-- ✏️ -->
-      </div>
-
-      <!-- ✏️ BRAND 5 -->
-      <div class="brand-item">
-        <div class="brand-circle"><div class="brand-circle-text">Brand<br/>5</div></div>
-        <span class="brand-name">Brand Name</span><!-- ✏️ -->
-      </div>
-
-      <!-- ✏️ BRAND 6 -->
-      <div class="brand-item">
-        <div class="brand-circle"><div class="brand-circle-text">Brand<br/>6</div></div>
-        <span class="brand-name">Brand Name</span><!-- ✏️ -->
-      </div>
-
-      <!-- ✏️ BRAND 7 -->
-      <div class="brand-item">
-        <div class="brand-circle"><div class="brand-circle-text">Brand<br/>7</div></div>
-        <span class="brand-name">Brand Name</span><!-- ✏️ -->
-      </div>
-
-      <!-- ✏️ BRAND 8 -->
-      <div class="brand-item">
-        <div class="brand-circle"><div class="brand-circle-text">Brand<br/>8</div></div>
-        <span class="brand-name">Brand Name</span><!-- ✏️ -->
-      </div>
-
-      <!-- ── SECOND HALF (identical copy for seamless loop) ── -->
-      <div class="brand-item"><div class="brand-circle"><div class="brand-circle-text">Brand<br/>1</div></div><span class="brand-name">Brand Name</span></div>
-      <div class="brand-item"><div class="brand-circle"><div class="brand-circle-text">Brand<br/>2</div></div><span class="brand-name">Brand Name</span></div>
-      <div class="brand-item"><div class="brand-circle"><div class="brand-circle-text">Brand<br/>3</div></div><span class="brand-name">Brand Name</span></div>
-      <div class="brand-item"><div class="brand-circle"><div class="brand-circle-text">Brand<br/>4</div></div><span class="brand-name">Brand Name</span></div>
-      <div class="brand-item"><div class="brand-circle"><div class="brand-circle-text">Brand<br/>5</div></div><span class="brand-name">Brand Name</span></div>
-      <div class="brand-item"><div class="brand-circle"><div class="brand-circle-text">Brand<br/>6</div></div><span class="brand-name">Brand Name</span></div>
-      <div class="brand-item"><div class="brand-circle"><div class="brand-circle-text">Brand<br/>7</div></div><span class="brand-name">Brand Name</span></div>
-      <div class="brand-item"><div class="brand-circle"><div class="brand-circle-text">Brand<br/>8</div></div><span class="brand-name">Brand Name</span></div>
-
+      <div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/Rk0pmwLg/Rk0pmwLg.jpg" alt="Atriah" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Atria</div></div><span class="brand-name">Atriah</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/V14Cx8w/V14Cx8w.jpg" alt="Aiesec" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Aiese</div></div><span class="brand-name">Aiesec</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/YqxRYyn/YqxRYyn.jpg" alt="The Karachiites" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">The K</div></div><span class="brand-name">The Karachiites</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/wFS8SFNc/wFS8SFNc.jpg" alt="Saudagar Events" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Sauda</div></div><span class="brand-name">Saudagar Events</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/KxPjK8G6/KxPjK8G6.jpg" alt="Askari Events" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Askar</div></div><span class="brand-name">Askari Events</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/x8RxvdLy/x8RxvdLy.jpg" alt="The Karachi Co." onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">The K</div></div><span class="brand-name">The Karachi Co.</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/BHdrPB7h/BHdrPB7h.jpg" alt="Kesar Cosmetics" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Kesar</div></div><span class="brand-name">Kesar Cosmetics</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/Jjcrwnr1/Jjcrwnr1.jpg" alt="Creative Minds" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Creat</div></div><span class="brand-name">Creative Minds</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/xqfYPXLF/xqfYPXLF.jpg" alt="Creative Concoctions" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Creat</div></div><span class="brand-name">Creative Concoctions</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/BHmyQtdy/BHmyQtdy.jpg" alt="Creative Minds" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Creat</div></div><span class="brand-name">Creative Minds</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/67M7bGzD/67M7bGzD.jpg" alt="Scotmanns SunnyD" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Scotm</div></div><span class="brand-name">Scotmanns SunnyD</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/tVRMnRt/tVRMnRt.jpg" alt="Hi Nutrition" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Hi Nu</div></div><span class="brand-name">Hi Nutrition</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/1tgmT29k/1tgmT29k.jpg" alt="The Frosty Bazaar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">The F</div></div><span class="brand-name">The Frosty Bazaar</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/rGZNpvQm/rGZNpvQm.jpg" alt="Sahara Scents" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Sahar</div></div><span class="brand-name">Sahara Scents</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/tPNgD8Sg/tPNgD8Sg.jpg" alt="Dr Affan Qaisar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Dr Af</div></div><span class="brand-name">Dr Affan Qaisar</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/W48bvkPx/W48bvkPx.jpg" alt="Fest Events" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Fest </div></div><span class="brand-name">Fest Events</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/qYCm3d8x/qYCm3d8x.jpg" alt="F & A Events" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">F & A</div></div><span class="brand-name">F & A Events</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/qM0s1jx9/qM0s1jx9.jpg" alt="Sham E Gham" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Sham </div></div><span class="brand-name">Sham E Gham</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/DHN9JFgp/DHN9JFgp.jpg" alt="Aero Colors" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Aero </div></div><span class="brand-name">Aero Colors</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/5gbTVszw/5gbTVszw.jpg" alt="Blosia" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Blosi</div></div><span class="brand-name">Blosia</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/F4Q7jhP6/F4Q7jhP6.jpg" alt="DBR Cosmetics" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">DBR C</div></div><span class="brand-name">DBR Cosmetics</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/qLtdvtZz/qLtdvtZz.jpg" alt="Pristine Shilajit" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Prist</div></div><span class="brand-name">Pristine Shilajit</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/yJkmqxd/yJkmqxd.jpg" alt="Ah HealthCare" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Ah He</div></div><span class="brand-name">Ah HealthCare</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/Rk0pmwLg/Rk0pmwLg.jpg" alt="Atriah" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Atria</div></div><span class="brand-name">Atriah</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/V14Cx8w/V14Cx8w.jpg" alt="Aiesec" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Aiese</div></div><span class="brand-name">Aiesec</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/YqxRYyn/YqxRYyn.jpg" alt="The Karachiites" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">The K</div></div><span class="brand-name">The Karachiites</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/wFS8SFNc/wFS8SFNc.jpg" alt="Saudagar Events" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Sauda</div></div><span class="brand-name">Saudagar Events</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/KxPjK8G6/KxPjK8G6.jpg" alt="Askari Events" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Askar</div></div><span class="brand-name">Askari Events</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/x8RxvdLy/x8RxvdLy.jpg" alt="The Karachi Co." onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">The K</div></div><span class="brand-name">The Karachi Co.</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/BHdrPB7h/BHdrPB7h.jpg" alt="Kesar Cosmetics" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Kesar</div></div><span class="brand-name">Kesar Cosmetics</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/Jjcrwnr1/Jjcrwnr1.jpg" alt="Creative Minds" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Creat</div></div><span class="brand-name">Creative Minds</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/xqfYPXLF/xqfYPXLF.jpg" alt="Creative Concoctions" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Creat</div></div><span class="brand-name">Creative Concoctions</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/BHmyQtdy/BHmyQtdy.jpg" alt="Creative Minds" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Creat</div></div><span class="brand-name">Creative Minds</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/67M7bGzD/67M7bGzD.jpg" alt="Scotmanns SunnyD" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Scotm</div></div><span class="brand-name">Scotmanns SunnyD</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/tVRMnRt/tVRMnRt.jpg" alt="Hi Nutrition" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Hi Nu</div></div><span class="brand-name">Hi Nutrition</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/1tgmT29k/1tgmT29k.jpg" alt="The Frosty Bazaar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">The F</div></div><span class="brand-name">The Frosty Bazaar</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/rGZNpvQm/rGZNpvQm.jpg" alt="Sahara Scents" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Sahar</div></div><span class="brand-name">Sahara Scents</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/tPNgD8Sg/tPNgD8Sg.jpg" alt="Dr Affan Qaisar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Dr Af</div></div><span class="brand-name">Dr Affan Qaisar</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/W48bvkPx/W48bvkPx.jpg" alt="Fest Events" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Fest </div></div><span class="brand-name">Fest Events</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/qYCm3d8x/qYCm3d8x.jpg" alt="F & A Events" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">F & A</div></div><span class="brand-name">F & A Events</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/qM0s1jx9/qM0s1jx9.jpg" alt="Sham E Gham" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Sham </div></div><span class="brand-name">Sham E Gham</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/DHN9JFgp/DHN9JFgp.jpg" alt="Aero Colors" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Aero </div></div><span class="brand-name">Aero Colors</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/5gbTVszw/5gbTVszw.jpg" alt="Blosia" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Blosi</div></div><span class="brand-name">Blosia</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/F4Q7jhP6/F4Q7jhP6.jpg" alt="DBR Cosmetics" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">DBR C</div></div><span class="brand-name">DBR Cosmetics</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/qLtdvtZz/qLtdvtZz.jpg" alt="Pristine Shilajit" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Prist</div></div><span class="brand-name">Pristine Shilajit</span></div><div class="brand-item"><div class="brand-circle"><img src="https://i.ibb.co/yJkmqxd/yJkmqxd.jpg" alt="Ah HealthCare" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="brand-circle-text" style="display:none;">Ah He</div></div><span class="brand-name">Ah HealthCare</span></div>
     </div>
   </div>
 </section>
@@ -1076,10 +1051,10 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
   <p class="reveal">Let's build something remarkable. Book a free discovery call or drop us a message.</p>
   <div class="contact-actions reveal">
     <!-- ✏️ BOOKING LINK — replace # with your Calendly / booking page URL -->
-    <a href="#" class="btn btn-white">Book Appointment</a>
+    <a href="https://wa.me/923133774329?text=Hello%20Coconut%20Creatives!%20I%20would%20like%20to%20book%20an%20appointment." class="btn btn-white" target="_blank" rel="noopener">Book Appointment</a>
     <button class="btn btn-outline" onclick="document.getElementById('cartToggle').click()">View Cart</button>
     <!-- ✏️ EMAIL -->
-    <a href="mailto:coconutmux@gmail.com" class="btn btn-outline">Email Us</a>
+    <a href="/cdn-cgi/l/email-protection#e5868a868a8b909188909da58288848c89cb868a88" class="btn btn-outline">Email Us</a>
   </div>
 </section>
 
@@ -1097,7 +1072,7 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
       <!-- ✏️ FOOTER TAGLINE -->
       <div class="footer-tagline">We Create Influence</div>
       <!-- ✏️ FOOTER DESCRIPTION -->
-      <p class="footer-desc">A premium creative agency in Pakistan crafting video ads, photography, and influencer campaigns that build lasting influence.</p>
+      <p class="footer-desc">A premium creative agency in Karachi crafting video ads, photography, and influencer campaigns that build lasting influence.</p>
 
       <!-- SOCIAL MEDIA ICONS -->
       <div class="footer-social">
@@ -1124,7 +1099,7 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
         </a>
 
         <!-- ✏️ WHATSAPP (in footer social) -->
-        <a class="social-icon" href="https://wa.me/923001234567" target="_blank" rel="noopener" title="WhatsApp">
+        <a class="social-icon" href="https://wa.me/923133774329" target="_blank" rel="noopener" title="WhatsApp">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
           </svg>
@@ -1154,7 +1129,7 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
         <a href="https://www.facebook.com/coconutmarketingagency" target="_blank">Facebook</a>
         <a href="https://www.linkedin.com/in/coconut-marketing-agency-124987311/" target="_blank">LinkedIn</a>
         <!-- ✏️ EMAIL -->
-        <a href="mailto:coconutmux@gmail.com">coconutmux@gmail.com</a>
+        <a href="/cdn-cgi/l/email-protection#66050905090813120b131e26010b070f0a4805090b"><span class="__cf_email__" data-cfemail="05666a666a6b707168707d456268646c692b666a68">[email&#160;protected]</span></a>
       </div>
     </div>
   </div>
@@ -1184,12 +1159,20 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
   </div>
   <div class="cart-form" id="cartForm">
     <div class="form-group">
-      <label class="form-label">Your Name</label>
+      <label class="form-label">Your Name <span style="color:#f55;">*</span></label>
       <input type="text" class="form-input" id="customerName" placeholder="e.g. Ahmed Raza"/>
     </div>
     <div class="form-group">
-      <label class="form-label">Phone Number</label>
+      <label class="form-label">Phone Number <span style="color:#f55;">*</span></label>
       <input type="tel" class="form-input" id="customerPhone" placeholder="e.g. 0300-1234567"/>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Brand Name <span style="color:var(--silver);font-size:0.6rem;letter-spacing:0.1em;">(optional)</span></label>
+      <input type="text" class="form-input" id="customerBrand" placeholder="e.g. Nova Apparel"/>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Brand Website <span style="color:var(--silver);font-size:0.6rem;letter-spacing:0.1em;">(optional)</span></label>
+      <input type="url" class="form-input" id="customerWebsite" placeholder="e.g. https://yoursite.com"/>
     </div>
     <button class="send-btn" id="sendBtn" onclick="sendInquiry()">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
@@ -1202,12 +1185,12 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
 
 <!-- WHATSAPP FAB -->
 <!-- ✏️ WHATSAPP NUMBER — format: https://wa.me/COUNTRYCODEPHONENUMBER -->
-<a href="https://wa.me/923001234567" class="whatsapp-fab" target="_blank" rel="noopener" title="Chat on WhatsApp">
+<a href="https://wa.me/923133774329" class="whatsapp-fab" target="_blank" rel="noopener" title="Chat on WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ══════════════════════════════════════
   // ✏️ EMAIL JS — replace these 3 values
   // Get free keys at https://www.emailjs.com
@@ -1348,9 +1331,11 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
 
   // ── SEND INQUIRY ──
   async function sendInquiry() {
-    const name  = document.getElementById('customerName').value.trim();
-    const phone = document.getElementById('customerPhone').value.trim();
-    if (!name || !phone) { showToast('Please fill in your details'); return; }
+    const name    = document.getElementById('customerName').value.trim();
+    const phone   = document.getElementById('customerPhone').value.trim();
+    const brand   = document.getElementById('customerBrand')?.value.trim() || '';
+    const website = document.getElementById('customerWebsite')?.value.trim() || '';
+    if (!name || !phone) { showToast('Please fill in your name and phone number'); return; }
     if (!cartItems.length) { showToast('Your cart is empty'); return; }
     const btn = document.getElementById('sendBtn');
     btn.disabled = true; btn.textContent = 'Sending…';
@@ -1358,13 +1343,15 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
     try {
       await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
         to_email: INQUIRY_EMAIL, customer_name: name,
-        customer_phone: phone, services: servicesList, reply_to: INQUIRY_EMAIL
+        customer_phone: phone, customer_brand: brand || 'N/A',
+        customer_website: website || 'N/A',
+        services: servicesList, reply_to: INQUIRY_EMAIL
       });
       document.getElementById('formSuccess').style.display = 'block';
       btn.style.display = 'none'; cartItems = []; updateCartUI();
       showToast('Inquiry sent successfully!');
     } catch {
-      const body = `Name: ${name}\nPhone: ${phone}\n\nServices:\n${servicesList}`;
+      const body = `Name: ${name}\nPhone: ${phone}\nBrand: ${brand||'N/A'}\nWebsite: ${website||'N/A'}\n\nServices:\n${servicesList}`;
       window.open(`mailto:${INQUIRY_EMAIL}?subject=Inquiry from ${name}&body=${encodeURIComponent(body)}`);
       btn.disabled = false;
       btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Inquiry';
@@ -1383,14 +1370,3 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const target = document.querySelector(a.getAttribute('href'));
-      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
-    });
-  });
-
-  // ── MOBILE NAV ──
-  document.getElementById('navHamburger').addEventListener('click', () => {
-    showToast('Tap a section below to navigate');
-  });
-</script>
-</body>
-</html>

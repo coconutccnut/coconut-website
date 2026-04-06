@@ -555,6 +555,19 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
   }
   .portfolio-reel-item:hover .insta-footer { opacity: 1; }
 
+
+/* Cart item quantity controls */
+.cart-item { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; border-radius: var(--radius); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); gap: 12px; }
+.cart-item-info { flex: 1; min-width: 0; }
+.cart-item-name { font-size: 0.86rem; font-weight: 400; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cart-item-price { font-family: var(--font-display); font-size: 1rem; color: #aaa; margin-top: 2px; }
+.cart-item-controls { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.qty-btn { width: 26px; height: 26px; border-radius: 50%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); color: #fff; font-size: 1rem; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; padding: 0; }
+.qty-btn:hover { background: rgba(255,255,255,0.18); }
+.qty-num { font-size: 0.88rem; min-width: 20px; text-align: center; }
+.cart-item-remove { background: none; border: none; color: #555; cursor: pointer; font-size: 1.1rem; padding: 2px 4px; transition: color 0.2s; margin-left: 2px; }
+.cart-item-remove:hover { color: #fff; }
+
 </style>
 </head>
 <body>
@@ -1200,197 +1213,319 @@ footer { padding: 64px 5% 36px; border-top: 1px solid var(--glass-border); backg
 </a>
 
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-document.addEventListener("DOMContentLoaded", function() {
-  // ══════════════════════════════════════
-  // ✏️ EMAIL JS — replace these 3 values
-  // Get free keys at https://www.emailjs.com
-  // ══════════════════════════════════════
-  emailjs.init("YOUR_EMAILJS_PUBLIC_KEY");
-  const EMAILJS_SERVICE_ID  = "YOUR_EMAILJS_SERVICE_ID";
-  const EMAILJS_TEMPLATE_ID = "YOUR_EMAILJS_TEMPLATE_ID";
-  const INQUIRY_EMAIL = "coconutmux@gmail.com"; // ✏️ your email
+<!-- ============================================================
+  MAIN SCRIPT — All functions defined globally, no DOMContentLoaded wrapper
+  so onclick= attributes in HTML can always find them
+============================================================ -->
+<script>
+// ═══════════════════════════════════════════════════════
+// CONFIG — ✏️ Replace these with your real EmailJS values
+// Get them free at https://www.emailjs.com
+// ═══════════════════════════════════════════════════════
+var EMAILJS_PUBLIC_KEY  = 'YOUR_EMAILJS_PUBLIC_KEY';
+var EMAILJS_SERVICE_ID  = 'YOUR_EMAILJS_SERVICE_ID';
+var EMAILJS_TEMPLATE_ID = 'YOUR_EMAILJS_TEMPLATE_ID';
+var INQUIRY_EMAIL       = 'coconutmux@gmail.com';
 
-  // ── CURSOR ──
-  const cursor = document.getElementById('cursor');
-  const ring   = document.getElementById('cursorRing');
-  let mx = -200, my = -200, rx = -200, ry = -200, rafActive = false;
-  function moveCursor(e) {
-    mx = e.clientX; my = e.clientY;
-    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
-    if (!rafActive) { rafActive = true; animRing(); }
+// ═══════════════════════════════════════════════
+// CART STATE
+// ═══════════════════════════════════════════════
+var cartItems = [];
+
+// ── ADD TO CART (called from onclick= on service buttons) ──
+function addToCart(name, price) {
+  var existing = cartItems.find(function(i){ return i.name === name; });
+  if (existing) {
+    existing.qty = (existing.qty || 1) + 1;
+  } else {
+    cartItems.push({ name: name, price: price, qty: 1 });
   }
-  document.addEventListener('mousemove', moveCursor, { passive: true });
-  function animRing() {
-    rx += (mx - rx) * 0.13; ry += (my - ry) * 0.13;
-    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-    if (Math.abs(mx - rx) > 0.5 || Math.abs(my - ry) > 0.5) {
-      requestAnimationFrame(animRing);
-    } else { rafActive = false; }
+  updateCartUI();
+  openCart();
+  showToast('Added: ' + name);
+}
+
+// ── CHANGE QUANTITY ──
+function changeQty(idx, delta) {
+  if (!cartItems[idx]) return;
+  cartItems[idx].qty = (cartItems[idx].qty || 1) + delta;
+  if (cartItems[idx].qty <= 0) {
+    cartItems.splice(idx, 1);
   }
+  updateCartUI();
+}
 
-  // ── NAV SCROLL ──
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
+// ── REMOVE FROM CART ──
+function removeFromCart(idx) {
+  cartItems.splice(idx, 1);
+  updateCartUI();
+}
 
-  // ── SCROLL REVEAL ──
-  // Add js-loaded so reveal CSS kicks in (before this, everything is visible)
-  document.body.classList.add('js-loaded');
-  const revObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); }
-    });
-  }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
-  // Fallback: if IntersectionObserver doesn't fire, show everything after 500ms
-  setTimeout(() => {
-    document.querySelectorAll('.reveal:not(.visible)').forEach(el => el.classList.add('visible'));
-  }, 500);
+// ── UPDATE CART UI ──
+function updateCartUI() {
+  var count = cartItems.reduce(function(s, i){ return s + (i.qty||1); }, 0);
+  var countEl = document.getElementById('cartCount');
+  if (countEl) { countEl.textContent = count; countEl.style.display = count > 0 ? 'flex' : 'none'; }
 
-  // ── HERO CARDS — individual float rotation override ──
-  document.querySelectorAll('.hcard').forEach(card => {
-    const style = window.getComputedStyle(card);
-    const t = style.transform;
-    // extract rotation from transform and pass as CSS var for consistent animation
-    card.style.setProperty('--r', card.style.transform || '0deg');
-  });
+  var container = document.getElementById('cartItems');
+  var emptyEl   = document.getElementById('cartEmpty');
+  if (!container) return;
 
-  // ── PORTFOLIO REEL MODAL ──
-  function openReel(itemEl) {
-    const modal = document.getElementById('videoModal');
-    const inner = document.getElementById('modalInner');
+  // Remove old items
+  var old = container.querySelectorAll('.cart-item');
+  old.forEach(function(el){ el.remove(); });
 
-    // Find the media element inside the clicked item
-    const video = itemEl.querySelector('video');
-    const img   = itemEl.querySelector('img');
-
-    // Clear previous modal content (keep close button)
-    inner.innerHTML = '<button class="modal-close" onclick="closeVideoModal()">×</button>';
-
-    if (video) {
-      const v = document.createElement('video');
-      v.src = video.src || video.querySelector('source')?.src;
-      v.controls = true;
-      v.autoplay = true;
-      v.loop = true;
-      v.style.cssText = 'width:100%;height:100%;object-fit:cover;';
-      inner.appendChild(v);
-    } else if (img) {
-      const i = document.createElement('img');
-      i.src = img.src;
-      i.style.cssText = 'width:100%;height:100%;object-fit:cover;';
-      inner.appendChild(i);
-    } else {
-      // Placeholder — show message
-      const msg = document.createElement('div');
-      msg.style.cssText = 'width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#666;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;background:#111;';
-      msg.textContent = 'Add video or image to this slot';
-      inner.appendChild(msg);
-    }
-
-    modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeVideoModal() {
-    const modal = document.getElementById('videoModal');
-    const inner = document.getElementById('modalInner');
-    modal.classList.remove('open');
-    document.body.style.overflow = '';
-    // Stop any playing video
-    const v = inner.querySelector('video');
-    if (v) { v.pause(); v.src = ''; }
-  }
-
-  function closeModal(e) {
-    if (e.target === document.getElementById('videoModal')) closeVideoModal();
-  }
-
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVideoModal(); });
-
-  // ── CART ── (exposed globally for onclick= attributes)
-  window._cartItems = [];
-  let cartItems = window._cartItems;
-
-  window.addToCart = function addToCart(name, price) {
-    if (cartItems.find(i => i.name === name)) { showToast('Already in cart'); return; }
-    cartItems.push({ name, price });
-    updateCartUI(); openCart();
-    showToast('Added: ' + name);
-  }
-
-  window.removeFromCart = function removeFromCart(idx) { cartItems.splice(idx, 1); updateCartUI(); }
-
-  function updateCartUI() {
-    const count = cartItems.length;
-    const countEl = document.getElementById('cartCount');
-    countEl.textContent = count;
-    countEl.classList.toggle('visible', count > 0);
-    const container = document.getElementById('cartItems');
-    document.getElementById('cartEmpty').style.display = count === 0 ? 'block' : 'none';
-    container.querySelectorAll('.cart-item').forEach(el => el.remove());
-    cartItems.forEach((item, idx) => {
-      const div = document.createElement('div');
+  if (cartItems.length === 0) {
+    if (emptyEl) emptyEl.style.display = 'block';
+  } else {
+    if (emptyEl) emptyEl.style.display = 'none';
+    cartItems.forEach(function(item, idx) {
+      var div = document.createElement('div');
       div.className = 'cart-item';
-      div.innerHTML = `<div><div class="cart-item-name">${item.name}</div><div class="cart-item-price">${item.price}</div></div><button class="cart-item-remove" onclick="removeFromCart(${idx})">×</button>`;
+      div.innerHTML =
+        '<div class="cart-item-info">' +
+          '<div class="cart-item-name">' + item.name + '</div>' +
+          '<div class="cart-item-price">' + item.price + '</div>' +
+        '</div>' +
+        '<div class="cart-item-controls">' +
+          '<button class="qty-btn" onclick="changeQty(' + idx + ',-1)">−</button>' +
+          '<span class="qty-num">' + (item.qty||1) + '</span>' +
+          '<button class="qty-btn" onclick="changeQty(' + idx + ',1)">+</button>' +
+          '<button class="cart-item-remove" onclick="removeFromCart(' + idx + ')">×</button>' +
+        '</div>';
       container.appendChild(div);
     });
   }
+}
 
-  window.openCart = function openCart() {
-    document.getElementById('cartDrawer').classList.add('open');
-    document.getElementById('cartOverlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
+// ── OPEN / CLOSE CART ──
+function openCart() {
+  var drawer  = document.getElementById('cartDrawer');
+  var overlay = document.getElementById('cartOverlay');
+  if (drawer)  drawer.classList.add('open');
+  if (overlay) overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCart() {
+  var drawer  = document.getElementById('cartDrawer');
+  var overlay = document.getElementById('cartOverlay');
+  if (drawer)  drawer.classList.remove('open');
+  if (overlay) overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ── SEND INQUIRY ──
+function sendInquiry() {
+  var name    = (document.getElementById('customerName')    || {}).value || '';
+  var phone   = (document.getElementById('customerPhone')   || {}).value || '';
+  var brand   = (document.getElementById('customerBrand')   || {}).value || '';
+  var website = (document.getElementById('customerWebsite') || {}).value || '';
+  name  = name.trim();  phone = phone.trim();
+  brand = brand.trim(); website = website.trim();
+
+  if (!name)  { showToast('Please enter your name'); return; }
+  if (!phone) { showToast('Please enter your phone number'); return; }
+  if (cartItems.length === 0) { showToast('Your cart is empty'); return; }
+
+  var btn = document.getElementById('sendBtn');
+  if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+  var servicesList = cartItems.map(function(i){
+    return '• ' + i.name + ' x' + (i.qty||1) + ' (' + i.price + ')';
+  }).join('\n');
+
+  var subject = 'Service Inquiry from ' + name;
+  var body =
+    'Name: ' + name + '\n' +
+    'Phone: ' + phone + '\n' +
+    (brand   ? 'Brand: '   + brand   + '\n' : '') +
+    (website ? 'Website: ' + website + '\n' : '') +
+    '\nSelected Services:\n' + servicesList;
+
+  // Try EmailJS first; fall back to mailto
+  if (typeof emailjs !== 'undefined' &&
+      EMAILJS_PUBLIC_KEY !== 'YOUR_EMAILJS_PUBLIC_KEY') {
+    try { emailjs.init(EMAILJS_PUBLIC_KEY); } catch(e) {}
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+      to_email:         INQUIRY_EMAIL,
+      customer_name:    name,
+      customer_phone:   phone,
+      customer_brand:   brand   || 'N/A',
+      customer_website: website || 'N/A',
+      services:         servicesList,
+      reply_to:         INQUIRY_EMAIL
+    }).then(function() {
+      onInquirySent();
+    }).catch(function() {
+      openMailto(subject, body);
+    });
+  } else {
+    // Fall back to mailto (opens Gmail / default mail client)
+    openMailto(subject, body);
+  }
+}
+
+function openMailto(subject, body) {
+  var mailtoUrl = 'mailto:' + INQUIRY_EMAIL +
+    '?subject=' + encodeURIComponent(subject) +
+    '&body='    + encodeURIComponent(body);
+  window.open(mailtoUrl, '_blank');
+  onInquirySent();
+}
+
+function onInquirySent() {
+  var btn = document.getElementById('sendBtn');
+  var success = document.getElementById('formSuccess');
+  if (success) success.style.display = 'block';
+  if (btn)     btn.style.display = 'none';
+  cartItems = [];
+  updateCartUI();
+  showToast('Inquiry sent! We will be in touch.');
+}
+
+// ── TOAST ──
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(function(){ t.classList.remove('show'); }, 2800);
+}
+
+// ══════════════════════════════════════════════
+// INIT — runs when DOM is ready
+// ══════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', function() {
+
+  // EmailJS init
+  if (typeof emailjs !== 'undefined' &&
+      EMAILJS_PUBLIC_KEY !== 'YOUR_EMAILJS_PUBLIC_KEY') {
+    try { emailjs.init(EMAILJS_PUBLIC_KEY); } catch(e) {}
   }
 
-  window.closeCart = function closeCart() {
-    document.getElementById('cartDrawer').classList.remove('open');
-    document.getElementById('cartOverlay').classList.remove('open');
-    document.body.style.overflow = '';
+  // ── CURSOR (desktop only) ──
+  var cursor = document.getElementById('cursor');
+  var ring   = document.getElementById('cursorRing');
+  var mx = -200, my = -200, rx = -200, ry = -200;
+  var rafId = null;
+
+  function animRing() {
+    rx += (mx - rx) * 0.13;
+    ry += (my - ry) * 0.13;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    var dx = Math.abs(mx - rx), dy = Math.abs(my - ry);
+    if (dx > 0.3 || dy > 0.3) { rafId = requestAnimationFrame(animRing); }
+    else { rafId = null; }
   }
 
-  document.getElementById('cartToggle').addEventListener('click', () => {
-    document.getElementById('cartDrawer').classList.contains('open') ? closeCart() : openCart();
+  if (cursor && ring) {
+    document.addEventListener('mousemove', function(e) {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx + 'px';
+      cursor.style.top  = my + 'px';
+      if (!rafId) { rafId = requestAnimationFrame(animRing); }
+    }, { passive: true });
+  }
+
+  // ── NAV SCROLL ──
+  var navbar = document.getElementById('navbar');
+  if (navbar) {
+    window.addEventListener('scroll', function() {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+  }
+
+  // ── SCROLL REVEAL ──
+  document.body.classList.add('js-loaded');
+  if ('IntersectionObserver' in window) {
+    var revObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -20px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el) { revObs.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el) { el.classList.add('visible'); });
+  }
+  // Safety fallback
+  setTimeout(function() {
+    document.querySelectorAll('.reveal').forEach(function(el) { el.classList.add('visible'); });
+  }, 600);
+
+  // ── CART TOGGLE BUTTON ──
+  var cartToggle = document.getElementById('cartToggle');
+  if (cartToggle) {
+    cartToggle.addEventListener('click', function() {
+      var drawer = document.getElementById('cartDrawer');
+      if (drawer && drawer.classList.contains('open')) { closeCart(); }
+      else { openCart(); }
+    });
+  }
+
+  // ── PORTFOLIO — load Instagram thumbnail previews ──
+  // Uses Instagram's oEmbed thumbnail (no auth needed)
+  document.querySelectorAll('.portfolio-reel-item[data-insta]').forEach(function(item) {
+    var instaUrl = item.getAttribute('data-insta');
+    if (!instaUrl) return;
+    var bg = item.querySelector('.reel-insta-bg');
+    if (!bg) return;
+    // Try to load Instagram thumbnail via their CDN pattern
+    // Instagram post ID → thumbnail URL pattern
+    var postId = instaUrl.replace(/\/$/, '').split('/').pop();
+    // Use Instagram's public thumbnail (works without auth for public posts)
+    var thumbUrl = 'https://www.instagram.com/p/' + postId + '/media/?size=l';
+    // Create image element and try loading
+    var img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = function() {
+      if (this.naturalWidth > 10) {
+        bg.style.backgroundImage = 'url(' + thumbUrl + ')';
+        bg.style.backgroundSize = 'cover';
+        bg.style.backgroundPosition = 'center';
+      }
+    };
+    img.onerror = function() {
+      // Thumbnail failed — keep gradient background, that's fine
+    };
+    img.src = thumbUrl;
   });
 
-  // ── SEND INQUIRY ──
-  window.sendInquiry = async function sendInquiry() {
-    const name    = document.getElementById('customerName').value.trim();
-    const phone   = document.getElementById('customerPhone').value.trim();
-    const brand   = document.getElementById('customerBrand')?.value.trim() || '';
-    const website = document.getElementById('customerWebsite')?.value.trim() || '';
-    if (!name || !phone) { showToast('Please fill in your name and phone number'); return; }
-    if (!cartItems.length) { showToast('Your cart is empty'); return; }
-    const btn = document.getElementById('sendBtn');
-    btn.disabled = true; btn.textContent = 'Sending…';
-    const servicesList = cartItems.map(i => `• ${i.name} (${i.price})`).join('\n');
-    try {
-      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-        to_email: INQUIRY_EMAIL, customer_name: name,
-        customer_phone: phone, customer_brand: brand || 'N/A',
-        customer_website: website || 'N/A',
-        services: servicesList, reply_to: INQUIRY_EMAIL
-      });
-      document.getElementById('formSuccess').style.display = 'block';
-      btn.style.display = 'none'; cartItems = []; updateCartUI();
-      showToast('Inquiry sent successfully!');
-    } catch {
-      const body = `Name: ${name}\nPhone: ${phone}\nBrand: ${brand||'N/A'}\nWebsite: ${website||'N/A'}\n\nServices:\n${servicesList}`;
-      window.open(`mailto:${INQUIRY_EMAIL}?subject=Inquiry from ${name}&body=${encodeURIComponent(body)}`);
-      btn.disabled = false;
-      btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Inquiry';
-      showToast('Opening email client…');
-    }
-  }
-
-  // ── TOAST ──
-  window.showToast = function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg; t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2800);
-  }
-
   // ── SMOOTH SCROLL ──
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var href = a.getAttribute('href');
+      if (href === '#') return;
+      var target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // ── MOBILE NAV ──
+  var ham = document.getElementById('navHamburger');
+  if (ham) {
+    ham.addEventListener('click', function() {
+      showToast('Scroll down to explore');
+    });
+  }
+
+  // ── ESCAPE key closes cart ──
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      var drawer = document.getElementById('cartDrawer');
+      if (drawer && drawer.classList.contains('open')) closeCart();
+    }
+  });
+
+});
+</script>
+</body>
+</html>
